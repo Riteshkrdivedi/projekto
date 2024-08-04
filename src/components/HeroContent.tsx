@@ -7,13 +7,14 @@ import { slideInFromRight } from "../../utils/motion";
 import { slideInFromTop } from "../../utils/motion";
 import { SparklesIcon } from "@heroicons/react/24/solid";
 import Button from "./Button";
+import Robot3d from "./Robot3d";
 
 const HeroContent = () => {
   return (
     <motion.div
       initial="hidden"
       animate="visible"
-      className="flex flex-row items-center justify-center px-20 mt-40 w-full z-[20]"
+      className="flex flex-row  items-center justify-center px-20 mt-40 w-full z-[20]"
     >
       <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
         <motion.div
@@ -62,9 +63,11 @@ const HeroContent = () => {
 
       <motion.div
         variants={slideInFromRight(0.8)}
-        className="w-full h-full flex justify-center items-center"
+        className="w-full  h-full flex justify-center items-center"
       >
-        {/* apna  3d robot laga dunga  */}
+        <div className="z-50 overflow-visible flex align-bottom h-96">
+          <Robot3d />
+        </div>
       </motion.div>
     </motion.div>
   );
