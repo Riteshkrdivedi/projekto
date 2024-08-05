@@ -14,7 +14,7 @@ const HeroContent = () => {
     <motion.div
       initial="hidden"
       animate="visible"
-      className="flex flex-row  items-center justify-center px-20 mt-40 w-full z-[20]"
+      className="flex flex-row  items-center justify-center px-20 mt-40 w-full "
     >
       <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
         <motion.div
@@ -65,7 +65,7 @@ const HeroContent = () => {
         variants={slideInFromRight(0.8)}
         className="w-full  h-full flex justify-center items-center"
       >
-        <div className="z-50 overflow-visible flex align-bottom h-96">
+        <div className="z-20 overflow-visible flex align-bottom h-96">
           <Robot3d />
         </div>
       </motion.div>
