@@ -5,6 +5,7 @@ import HeroContent from "@/components/HeroContent";
 
 import Navbar from "../parts/Navbar";
 import Community from "@/parts/Community";
+import Projects from "@/parts/Projects";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <StarBackground />
       <HeroContent />
       <Community />
+      <Projects />
     </div>
   );
 }
