@@ -47,15 +47,15 @@ const HeroContent = () => {
           variants={slideInFromLeft(0.8)}
           className="text-lg text-gray-400 my-5 max-w-[600px]"
         >
-          "Projekto connects engineers, developers, and innovators to create and
-          collaborate on groundbreaking software and hardware projects in
-          real-time."
+          &quot;Projekto connects engineers, developers, and innovators to
+          create and collaborate on groundbreaking software and hardware
+          projects in real-time.&quot;
         </motion.p>
         <motion.a
           variants={slideInFromLeft(1)}
           className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
         >
-          <Button className=" text-gray-30 py-2 rounded-2xl shadow-lg shadow-[#2A0E61]/50 bg-[#2A0E61]">
+          <Button className=" text-gray-30 p-6  rounded-2xl shadow-lg text-xl transition-all shadow-[#2A0E61]/50 hover:bg-[#6f52df] border-x-2 border-[#8046f5]">
             Get Started
           </Button>
         </motion.a>

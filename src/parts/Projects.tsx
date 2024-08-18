@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "../components/Button";
 import Card from "../components/Card";
+// import img from "next/img";
+import Jet3d from "../components/Jet3D";
 
 const Projects = () => {
   return (
@@ -14,29 +16,46 @@ const Projects = () => {
           Here!
         </h2>
         <p className="text-lg text-gray-400 my-7">
-          "Stop Procastinating" <br />
-          Turn your ideas into Innovation{" "}
+          &quot;Stop Procastinating&quot; <br />
+          Turn your ideas into Innovation
         </p>
 
-        <Button className=" border rounded-2xl shadow-violet-600 hover:bg-[#512c8a] ease-in transition-colors inset-3 border-[#7721aa]">
+        <Button className=" border rounded-2xl  shadow-[#2A0E61]/100 hover:bg-[#512c8a] ease-in transition-colors  border-[#7721aa]">
           Kickstart your project
         </Button>
       </div>
 
       <div className="flex my-10">
-        <img className="w-3/5 " src="projects-code.png" alt="community" />
-        <Card className=" h-96 p-8 w-1/3 relative bottom-16 left-8 text-white bg-slate-600">
-          <div className=" text-xl text-purple-400 font-medium mb-5">
+        <img className="w-3/5 " src="/projects-code.png" alt="community" />
+        <Card className=" h-96 p-6  w-1/3 relative bottom-16 left-8 text-white ">
+          <div className=" text-xl  text-purple-400 font-medium mb-5">
             Bring Your Ideas to Life 🌟
           </div>
-          Projekto empowers you to turn your project ideas into reality. <br />{" "}
+          Projekto empowers you to turn your project ideas into reality. <br />
           Post your software 💻 or hardware 🔧 project ideas, list the skills
-          you need, and attract the perfect team members. <br /> Whether you're
-          looking to innovate, solve problems, or create something entirely new,
-          Projekto provides the platform and tools to make it happen. <br />{" "}
+          you need, and attract the perfect team members. <br /> Whether
+          you&apos;re looking to innovate, solve problems, or create something
+          entirely new, Projekto provides the platform and tools to make it
+          happen. <br />
           Collaborate in real-time, track progress, and showcase your
-          achievements. <br /> <br /> Let's build something amazing together! 🚀
+          achievements. <br /> <br /> Let&apos;s build something amazing
+          together! 🚀
         </Card>
+      </div>
+
+      <div className="flex my-10">
+        <Card className=" h-56 p-6  w-1/3 relative  left-20 text-white ">
+          <div className=" text-xl  text-cyan-600 font-medium mb-5">
+            Hardware Projects 🔧
+          </div>
+          Innovate and create with hardware. Share your hardware project ideas,
+          find skilled collaborators, and work together to bring your vision to
+          life. <br /> From electronics to robotics, Projekto connects you with
+          the expertise and tools you need for successful hardware development.
+        </Card>
+        <div className="z-20 w-4/5  overflow-visible  h-96">
+          <Jet3d />
+        </div>
       </div>
     </div>
   );
