@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "../components/Card";
+import combg from "../public/com-bg.png";
 // import img from "next";
 import Button from "@/components/Button";
 // import { motion } from "framer-motion";
@@ -9,7 +10,15 @@ import Button from "@/components/Button";
 
 const Community = () => {
   return (
-    <div className="w-full h-[100vh] flex my-24 mx-0   items-center justify-center ">
+    <div
+      className="w-full h-[100vh] flex my-24 mx-0   items-center justify-center  "
+      // style={{
+      //   backgroundImage: `url('/com-bg.png')`,
+      //   backgroundSize: "contain",
+      //   backgroundPosition: "center",
+      //   opacity: 0.9,
+      // }}
+    >
       <div className="  w-2/4  h-full">
         <Card className="h-5/6 my-28 w-full bg-opacity-15 hover:shadow-[#2A0E61]/50  ">
           <div className="flex justify-evenly my-2">

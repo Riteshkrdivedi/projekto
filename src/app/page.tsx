@@ -2,7 +2,7 @@ import "./globals.css";
 
 import StarBackground from "@/components/StarBackground";
 import HeroContent from "@/components/HeroContent";
-// import Resources from "@/parts/Resources";
+import Resources from "@/parts/Resources";
 
 import Navbar from "../parts/Navbar";
 import Community from "@/parts/Community";
@@ -22,7 +22,7 @@ export default function Home() {
       <HeroContent />
       <Community />
       <Projects />
-      {/* <Resources /> */}
+      <Resources />
     </div>
   );
 }

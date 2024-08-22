@@ -6,7 +6,7 @@ import Jet3d from "../components/Jet3D";
 
 const Projects = () => {
   return (
-    <div className="w-full h-[100vh] my-44 ">
+    <div className="w-full  h-[180vh] mt-44 ">
       <div className=" text-white mx-20 ">
         <h2 className="text-7xl w-3/4 font-bold ">
           Start Your Next Big
