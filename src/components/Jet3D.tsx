@@ -12,8 +12,13 @@ import {
 
 const Jet3D: React.FC = () => {
   return (
-    <Canvas camera={{ position: [2, 5, 2], fov: 50 }}>
-      <OrbitControls enableDamping enablePan enableZoom enableRotate={true} />
+    <Canvas camera={{ position: [4, 4, 2], fov: 50 }}>
+      <OrbitControls
+        enableDamping
+        enablePan
+        enableZoom={false}
+        enableRotate={true}
+      />
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       <Robot />
@@ -37,7 +42,7 @@ const Robot: React.FC = () => {
   }, [actions]);
 
   return (
-    <primitive ref={group} object={scene} scale={0.09} position={[0, -2, 0]} />
+    <primitive ref={group} object={scene} scale={0.07} position={[0, -1, 0]} />
   );
 };
 

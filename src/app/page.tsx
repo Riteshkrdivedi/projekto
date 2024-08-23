@@ -7,6 +7,7 @@ import Resources from "@/parts/Resources";
 import Navbar from "../parts/Navbar";
 import Community from "@/parts/Community";
 import Projects from "@/parts/Projects";
+import Footer from "@/parts/Footer";
 
 // import dynamic from "next/dynamic";
 
@@ -23,6 +24,7 @@ export default function Home() {
       <Community />
       <Projects />
       <Resources />
+      <Footer />
     </div>
   );
 }

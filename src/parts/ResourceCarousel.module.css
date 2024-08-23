@@ -1,0 +1,60 @@
+.carouselContainer {
+  width: 100%;
+  padding: 40px;
+  background-color: transparent;
+}
+
+.card {
+  background-color: transparent;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(107, 7, 246, 0.34);
+  transition: transform 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.content {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: #fdf9f9;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #666;
+  flex: 1;
+}
+
+.link {
+  margin-top: 20px;
+  text-decoration: none;
+  color: #0070f3;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #0051a3;
+}

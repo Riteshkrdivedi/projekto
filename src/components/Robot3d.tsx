@@ -8,7 +8,12 @@ import { OrbitControls, useGLTF, useAnimations } from "@react-three/drei";
 const Robot3d: React.FC = () => {
   return (
     <Canvas>
-      <OrbitControls enableDamping enablePan enableZoom enableRotate={true} />
+      <OrbitControls
+        enableDamping
+        enablePan
+        enableZoom={false}
+        enableRotate={true}
+      />
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       <Robot />
