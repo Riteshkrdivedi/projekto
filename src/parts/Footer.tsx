@@ -5,9 +5,9 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <div className="text-white border-gray-900 h-[60vh] w-full bg-[#010308e7]">
-      <div className=" px-[10vw] py-[7vh] flex justify-around ">
-        <div className="w-1/4">
+    <div className="text-white border-gray-900 h-fit md:h-[60vh] w-full bg-[#010308e7]">
+      <div className=" px-[10vw] py-[7vh] flex flex-col md:flex-row justify-around ">
+        <div className=" w-full md:w-1/4">
           <p>
             <img src="./Logo.svg" alt="Logo" width={100} />
           </p>
@@ -54,8 +54,7 @@ const Footer = () => {
           </div>
         </div>
       </div>{" "}
-      <p className="text-center mt-24">
-        {" "}
+      <p className="text-center text-xs mt-7 md:mt-24">
         © 2024 Projekto. All rights reserved.Contribute on{" "}
         <a
           className="underline"

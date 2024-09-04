@@ -9,12 +9,6 @@ import Community from "@/parts/Community";
 import Projects from "@/parts/Projects";
 import Footer from "@/parts/Footer";
 
-// import dynamic from "next/dynamic";
-
-// const Resources = dynamic(() => import("../parts/Resources"), {
-//   ssr: false,
-// });
-
 export default function Home() {
   return (
     <div className=" h-full w-full ">

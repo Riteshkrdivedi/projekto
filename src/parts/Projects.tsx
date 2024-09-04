@@ -6,9 +6,9 @@ import Jet3d from "../components/Jet3D";
 
 const Projects = () => {
   return (
-    <div className="w-full  h-[180vh] mt-44 ">
-      <div className=" text-white mx-20 ">
-        <h2 className="text-7xl w-3/4 font-bold ">
+    <div className="w-full flex flex-col  h-fit  md:h-[180vh] mt-44 ">
+      <div className=" text-white mx-7 md:mx-20 ">
+        <h2 className="text-5xl md:text-7xl w-3/4 font-bold ">
           Start Your Next Big
           <div className="bg-gradient-to-r w-fit mx-5 inline text-transparent bg-clip-text from-[#ff00cc] to-[#333399]">
             Idea
@@ -25,9 +25,13 @@ const Projects = () => {
         </Button>
       </div>
 
-      <div className="flex my-10">
-        <img className="w-3/5 " src="/projects-code.png" alt="community" />
-        <Card className=" h-96 p-6  w-1/3 relative bottom-16 left-8 text-white ">
+      <div className="flex flex-col md:flex-row my-24 md:my-10">
+        <img
+          className="w-[90vw] md:w-3/5 "
+          src="/projects-code.png"
+          alt="community"
+        />
+        <Card className=" h-96 p-6 w-[85vw] md:w-1/3 relative md:bottom-16 left-8 text-white ">
           <div className=" text-xl  text-purple-400 font-medium mb-5">
             Bring Your Ideas to Life 🌟
           </div>
@@ -43,8 +47,8 @@ const Projects = () => {
         </Card>
       </div>
 
-      <div className="flex my-10">
-        <Card className=" h-56 p-6  w-1/3 relative  left-20 text-white ">
+      <div className="flex flex-col-reverse md:flex-row my-10">
+        <Card className="h-80 md:h-56 p-6 w-[90vw] md:w-1/3 relative left-5  md:left-20 text-white ">
           <div className=" text-xl  text-cyan-600 font-medium mb-5">
             Hardware Projects 🔧
           </div>
@@ -53,7 +57,7 @@ const Projects = () => {
           life. <br /> From electronics to robotics, Projekto connects you with
           the expertise and tools you need for successful hardware development.
         </Card>
-        <div className="z-20 w-4/5  overflow-visible  h-96">
+        <div className="z-20 w-[100vw] md:w-4/5  overflow-visible h-64  md:h-96">
           <Jet3d />
         </div>
       </div>

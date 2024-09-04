@@ -14,10 +14,10 @@ const Resources = () => {
     <div className="">
       <div className=" ">
         {" "}
-        <div className=" text-white mx-20 ">
-          <h2 className="text-7xl w-2/5 font-bold ">
+        <div className=" text-white mx-7 md:mx-20 ">
+          <h2 className="text-5xl md:text-7xl w-4/5 md:w-2/5 font-bold ">
             Empower Your Ideas with <p>the Best</p>
-            <div className="bg-gradient-to-r w-fit text-8xl  inline text-transparent bg-clip-text from-[#69eff9] to-[#1818be]">
+            <div className="bg-gradient-to-r  w-0 text-8=2xl  inline text-transparent bg-clip-text from-[#69eff9] to-[#1818be]">
               Resources!
             </div>
           </h2>

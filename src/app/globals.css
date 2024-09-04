@@ -2,10 +2,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.vertical-text {
+/* .vertical-text {
   writing-mode: vertical-rl;
-  text-orientation: mixed;
-}
+  transform: rotate(180deg);
+} */
 
 @layer utilities {
   @keyframes border-spin {

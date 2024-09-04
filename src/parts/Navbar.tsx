@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <div className="w-full flex justify-center mt-2 fixed top-2 z-50">
-      <div className="w-4/5 h-[72px] rounded-3xl shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md px-10">
+      <div className="w-11/12 md:w-4/5 h-[72px] rounded-3xl shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md px-10">
         <div className="w-full h-full flex flex-row items-center justify-between m-auto px-[10px]">
           <a
             href="#about-me"
@@ -34,25 +34,25 @@ const Navbar = () => {
             <div className="flex items-center  justify-between w-full h-auto border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-200">
               <a
                 href="#home"
-                className="cursor-pointer hover:animate-bounce   hover:text-[#b49ee0]"
+                className="cursor-pointer hover:animate-pulse   hover:text-[#b49ee0]"
               >
                 Home
               </a>
               <a
                 href="#projects"
-                className="cursor-pointer  hover:text-[#b49ee0] hover:animate-bounce"
+                className="cursor-pointer  hover:text-[#b49ee0] hover:animate-pulse"
               >
                 Projects
               </a>
               <a
                 href="#community"
-                className="cursor-pointer  hover:text-[#b49ee0] hover:animate-bounce"
+                className="cursor-pointer  hover:text-[#b49ee0] hover:animate-pulse"
               >
                 Community
               </a>
               <a
                 href="#resoures"
-                className="cursor-pointer  hover:text-[#b49ee0] hover:animate-bounce"
+                className="cursor-pointer  hover:text-[#b49ee0] hover:animate-pulse"
               >
                 Resources
               </a>
@@ -80,47 +80,47 @@ const Navbar = () => {
             onClick={() => setOpen(!open)}
           />
           <div
-            className={`text-white absolute xl:hidden top-24 left-0 w-full h-screen bg-[#120926] flex flex-col items-center gap-6 font-semibold text-lg transform transition-transform ${
+            className={`text-white absolute xl:hidden top-24 left-0 w-full h-screen bg-[#090516] flex flex-col items-center gap-6 font-semibold text-lg transform transition-transform ${
               open ? "opacity-100" : "opacity-0"
             }`}
             style={{ transition: "transform 0.3 ease , opacity 0.3 ease" }}
           >
-            <li className="w-full list-none text-center hover:animate-bounce hover:text-purple-500  rounded-3xl py-3 text-2xl">
-              <Button className=" text-gray-30 rounded-3xl w-2/3   shadow-lg shadow-[#2A0E61]/50 bg-[#2A0E61]/50">
+            <li className="w-full list-none text-center hover:animate-pulse hover:text-purple-500  rounded-3xl py-3 text-2xl">
+              <Button className=" text-gray-900 rounded-3xl w-2/3   shadow-lg  bg-[#c8c4d0]">
                 LogIn
               </Button>
             </li>
-            <li className="w-full list-none text-center hover:animate-bounce hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl">
+            <li className="w-full list-none text-center hover:animate-pulse hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl">
               <a
                 href="#home"
-                className="cursor-pointer hover:animate-bounce   hover:text-[#b49ee0]"
+                className="cursor-pointer hover:animate-pulse   hover:text-[#b49ee0]"
               >
                 Home
               </a>
             </li>
-            <li className="w-full list-none text-center hover:animate-bounce hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl">
+            <li className="w-full list-none text-center hover:animate-pulse hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl">
               {" "}
               <a
                 href="#projects"
-                className="cursor-pointer  hover:text-[#b49ee0] hover:animate-bounce"
+                className="cursor-pointer  hover:text-[#b49ee0] hover:animate-pulse"
               >
                 Projects
               </a>
             </li>
-            <li className="w-full list-none text-center hover:animate-bounce hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl">
+            <li className="w-full list-none text-center hover:animate-pulse hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl">
               {" "}
               <a
                 href="#community"
-                className="cursor-pointer  hover:text-[#b49ee0] hover:animate-bounce"
+                className="cursor-pointer  hover:text-[#b49ee0] hover:animate-pulse"
               >
                 Community
               </a>
             </li>
-            <li className="w-full list-none text-center hover:animate-bounce hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl">
+            <li className="w-full list-none text-center hover:animate-pulse hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl">
               {" "}
               <a
                 href="#resoures"
-                className="cursor-pointer  hover:text-[#b49ee0] hover:animate-bounce"
+                className="cursor-pointer  hover:text-[#b49ee0] hover:animate-pulse"
               >
                 Resources
               </a>
