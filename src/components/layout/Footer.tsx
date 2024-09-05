@@ -9,7 +9,7 @@ const Footer = () => {
       <div className=" px-[10vw] py-[7vh] flex flex-col md:flex-row justify-around ">
         <div className=" w-full md:w-1/4">
           <p>
-            <img src="./Logo.svg" alt="Logo" width={100} />
+            <img src="/Logo.svg" alt="Logo" width={100} />
           </p>
           <h2 className="text-2xl my-5  font-semibold">Projekto</h2>
           <p className="text-gray-400">

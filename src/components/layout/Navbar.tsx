@@ -1,10 +1,12 @@
 "use client";
 
 import React from "react";
-import Button from "../components/Button";
+import Button from "../Button";
+import AuthButton from "../AuthButton";
 
 import { TiThMenu } from "react-icons/ti";
 import { AiOutlineClose } from "react-icons/ai";
+import Link from "next/link";
 
 const Navbar = () => {
   const [open, setOpen] = React.useState(false);
@@ -33,7 +35,7 @@ const Navbar = () => {
           <div className="w-[600px] h-full  flex-row items-center xl:flex md:visible hidden    justify-between md:mr-20">
             <div className="flex items-center  justify-between w-full h-auto border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-200">
               <a
-                href="#home"
+                href="/"
                 className="cursor-pointer hover:animate-pulse   hover:text-[#b49ee0]"
               >
                 Home
@@ -71,9 +73,13 @@ const Navbar = () => {
             </div>
           </div>
           <div>
-            <Button className=" text-gray-30 rounded-3xl md:block hidden px-6 hover:font-bold shadow-lg hover:bg-[#2A0E61]/50 hover:text-white bg-white transition-all">
+            <Link
+              href={"/auth/login"}
+              className=" border-black hover:border-gray-50 text-gray-30 rounded-3xl md:block hidden px-6 hover:font-bold shadow-lg hover:bg-[#2A0E61]/50 hover:text-white py-2 font-semibold bg-white transition-all"
+            >
+              {" "}
               LogIn
-            </Button>
+            </Link>
           </div>
           <TiThMenu
             className="text-gray-300 text-3xl md:hidden cursor-pointer"

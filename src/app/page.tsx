@@ -1,13 +1,13 @@
 import "./globals.css";
 
-import StarBackground from "@/components/StarBackground";
-import HeroContent from "@/components/HeroContent";
+import StarBackground from "@/components/layout/StarBackground";
+import HeroContent from "@/parts/HeroContent";
 import Resources from "@/parts/Resources";
 
-import Navbar from "../parts/Navbar";
+import Navbar from "../components/layout/Navbar";
 import Community from "@/parts/Community";
 import Projects from "@/parts/Projects";
-import Footer from "@/parts/Footer";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   return (
