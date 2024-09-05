@@ -79,7 +79,14 @@ const login = () => {
                 </button>
               </Link>
             </form>
-            <div className="hidden md:block md:w-2/4"></div>
+            <div className="hidden md:block md:w-2/4">
+              {" "}
+              <img
+                src="/auth-img.png"
+                className=" w-[20vw]  mt-20 ml-11"
+                alt=""
+              />
+            </div>
           </div>
         </Blurcard>
       </div>
