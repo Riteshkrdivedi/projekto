@@ -1,3 +1,5 @@
+"use client";
+
 import Blurcard from "@/components/BlurCard";
 import React, { useState } from "react";
 import "../../app/globals.css";
