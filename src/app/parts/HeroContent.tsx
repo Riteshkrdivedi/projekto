@@ -2,12 +2,12 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { slideInFromLeft } from "../../utils/motion";
-import { slideInFromRight } from "../../utils/motion";
-import { slideInFromTop } from "../../utils/motion";
+import { slideInFromLeft } from "../../../utils/motion";
+import { slideInFromRight } from "../../../utils/motion";
+import { slideInFromTop } from "../../../utils/motion";
 import { SparklesIcon } from "@heroicons/react/24/solid";
-import Button from "../components/Button";
-import Robot3d from "../components/3d/Robot3d";
+import Button from "../../components/Button";
+import Robot3d from "../../components/3d/Robot3d";
 import AuthButton from "../components/AuthButton";
 
 const HeroContent = () => {

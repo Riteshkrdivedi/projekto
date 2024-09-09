@@ -2,21 +2,41 @@
 
 import Blurcard from "@/components/BlurCard";
 import React, { useState } from "react";
-import "../../app/globals.css";
+// import "../../app/globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import AuthButton from "@/components/AuthButton";
-import Link from "next/link";
+import {
+  signInWithGoogle,
+  signInWithGithub,
+  signUp,
+} from "../../../firebase/authservice";
 
-const register = () => {
+import Link from "next/link";
+import { Console } from "console";
+import router from "next/router";
+
+const page = () => {
   const [email, setemail] = useState(" ");
   const [password, setpassword] = useState("");
   const [username, setusername] = useState("");
+  const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
+    // if (password.length < 6) {
+    //   alert("Password should be atleast 6 characters long");
+    //   return;
+    // }
+    e.preventDefault();
+    try {
+      const user = signUp(email, password);
+      console.log("signed up", user);
 
-  const handlesubmit = () => {
-    alert("handling");
+      // console.log(username + "   " + email + "   " + password + "logged in");
+
+      // router.push("/");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -35,7 +55,7 @@ const register = () => {
         <Blurcard className=" w-full md:w-9/12 justify-center mt-[15vh] mb-[5vh] md:h[70vh]  h-[80vh]">
           <div className=" flex flex-row-reverse">
             <form
-              onSubmit={handlesubmit}
+              onSubmit={handleSignUp}
               className="flex md:w-[40vw] flex-col  items-center gap-4"
             >
               <h1 className="md:ml-20  ml-5 text-5xl font-bold md:text-6xl w-fit bg-gradient-to-tr text-transparent bg-clip-text from-purple-50 md:pl-20  to-cyan-100">
@@ -45,12 +65,18 @@ const register = () => {
                 "Let's build something awesome! Join Projekto now."
               </p>
               <div className="flex justify-around gap-5 ">
-                <AuthButton className="text-2xl  rounded-full hover:bg-slate-200 hover:text-black hover:border-gray-900  py-4 h-fit w-fit bg-[#0C0424]">
+                <button
+                  onClick={signInWithGoogle}
+                  className="text-2xl px-4 border hover:cursor-pointer   rounded-full hover:bg-slate-200 hover:text-black hover:border-gray-900  py-4 h-fit w-fit bg-[#0C0424]"
+                >
                   <FcGoogle />
-                </AuthButton>
-                <AuthButton className="text-2xl text-white hover:bg-slate-200 hover:text-black hover:border-gray-900 py-4 h-fit w-fit  rounded-full bg-[#0C0424]">
+                </button>
+                <button
+                  onClick={signInWithGithub}
+                  className="text-2xl px-4 border  text-white hover:bg-slate-200 hover:text-black hover:border-gray-900 py-4 h-fit w-fit  rounded-full bg-[#0C0424]"
+                >
                   <FaGithub />
-                </AuthButton>
+                </button>
               </div>
               <input
                 type="username"
@@ -73,6 +99,7 @@ const register = () => {
                 type="password"
                 value={password}
                 required
+                minLength={6}
                 onChange={(e) => setpassword(e.target.value)}
                 placeholder="Password"
                 className="w-full md:w-2/4 p-2 bg-transparent text-white border-b border-white/50 focus:outline-none focus:border-white/70"
@@ -109,4 +136,4 @@ const register = () => {
   );
 };
 
-export default register;
+export default page;

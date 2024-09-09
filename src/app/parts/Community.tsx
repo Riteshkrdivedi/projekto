@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "../components/Card";
+import Card from "../../components/Card";
 import combg from "../public/com-bg.png";
 // import img from "next";
 import Button from "@/components/Button";

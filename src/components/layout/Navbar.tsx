@@ -2,15 +2,15 @@
 
 import React from "react";
 import Button from "../Button";
-import AuthButton from "../AuthButton";
 
 import { TiThMenu } from "react-icons/ti";
 import { AiOutlineClose } from "react-icons/ai";
 import Link from "next/link";
+import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
   const [open, setOpen] = React.useState(false);
-
+  const { user } = useAuth();
   return (
     <div className="w-full flex justify-center mt-2 fixed top-2 z-50">
       <div className="w-11/12 md:w-4/5 h-[72px] rounded-3xl shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md px-10">
@@ -41,13 +41,13 @@ const Navbar = () => {
                 Home
               </a>
               <a
-                href="#projects"
+                href="/projects"
                 className="cursor-pointer  hover:text-[#b49ee0] hover:animate-pulse"
               >
                 Projects
               </a>
               <a
-                href="#community"
+                href="/community"
                 className="cursor-pointer  hover:text-[#b49ee0] hover:animate-pulse"
               >
                 Community
@@ -69,18 +69,42 @@ const Navbar = () => {
                 className="cursor-pointer hover:text-[#b49ee0] hover:animate-bounce"
               >
                 Models
+                
               </a> */}
             </div>
           </div>
-          <div>
-            <Link
-              href={"/auth/login"}
-              className=" border-black hover:border-gray-50 text-gray-30 rounded-3xl md:block hidden px-6 hover:font-bold shadow-lg hover:bg-[#2A0E61]/50 hover:text-white py-2 font-semibold bg-white transition-all"
-            >
-              {" "}
-              LogIn
-            </Link>
-          </div>
+          {user ? (
+            <div>
+              <Link
+                href={"/profile"}
+                className=" border-red border w-[7vh]  hover:border-gray-50 text-gray-30 rounded-full md:block hidden  hover:font-bold shadow-lg    font-semibold bg-black transition-all"
+              >
+                {user.photoURL ? (
+                  <img
+                    src={user.photoURL}
+                    alt="User profile"
+                    className="w-[7vh] h-[7vh] rounded-full"
+                  />
+                ) : (
+                  <img
+                    className="w-[7vh] h-[7vh] rounded-full"
+                    src="/guestdp.jpeg"
+                    alt="profile"
+                  />
+                )}
+              </Link>
+            </div>
+          ) : (
+            <div>
+              <Link
+                href={"/auth/login"}
+                className=" border-black hover:border-gray-50 text-black text-gray-30 rounded-3xl md:block hidden px-6 hover:font-bold shadow-lg hover:bg-[#2A0E61]/50 hover:text-white py-2 font-semibold bg-white transition-all"
+              >
+                LogIn
+              </Link>
+            </div>
+          )}
+
           <TiThMenu
             className="text-gray-300 text-3xl md:hidden cursor-pointer"
             onClick={() => setOpen(!open)}
@@ -91,8 +115,8 @@ const Navbar = () => {
             }`}
             style={{ transition: "transform 0.3 ease , opacity 0.3 ease" }}
           >
-            <li className="w-full list-none text-center hover:animate-pulse hover:text-purple-500  rounded-3xl py-3 text-2xl">
-              <Button className=" text-gray-900 rounded-3xl w-2/3   shadow-lg  bg-[#c8c4d0]">
+            <li className="w-full list-none  text-center hover:animate-pulse hover:text-purple-500  rounded-3xl py-3 text-2xl">
+              <Button className=" text-gray-900 rounded-3xl w-2/3    shadow-lg  bg-[#c8c4d0]">
                 LogIn
               </Button>
             </li>
