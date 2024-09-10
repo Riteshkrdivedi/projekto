@@ -2,8 +2,7 @@
 import { useEffect } from "react";
 import Blurcard from "@/components/BlurCard";
 import React, { use, useState } from "react";
-// import "../../../styles/globals.css";
-import Navbar from "@/components/layout/Navbar";
+import { toast } from "react-toastify";
 import Footer from "@/components/layout/Footer";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
@@ -56,7 +55,7 @@ const page = (): JSX.Element => {
       >
         <source src="/blackhole.webm" type="video/mp4" />
       </video>
-      <Navbar />
+
       <div className="relative   w-11/12 z-10 flex ml-5   md:ml-20 items-center justify-center md:pt-[7vh]  md:h-[100vh]">
         <Blurcard className=" w-full md:w-9/12 justify-center mt-[20vh] mb-[10vh]  h-[70vh]">
           <div className=" flex">

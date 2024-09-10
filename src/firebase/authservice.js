@@ -6,6 +6,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../config/firebase.config";
+import { toast } from "react-toastify";
 
 export const signIn = async (email, password) => {
   try {
@@ -16,10 +17,11 @@ export const signIn = async (email, password) => {
     );
     console.log(user);
 
-    // alert("welcome", userCredential.user.displayName);
+    toast("welcome", userCredential.user.displayName);
     return userCredential;
   } catch (error) {
     //  alert("please sign up first");
+    toast.error("please sign up first");
     return error;
   }
 };
@@ -30,7 +32,7 @@ export const signUp = async (email, password) => {
       email,
       password
     );
-
+    toast("welcome", userCredential.user.displayName);
     console.log(userCredential);
 
     // alert("welcome", userCredential.user.displayName);
@@ -38,6 +40,7 @@ export const signUp = async (email, password) => {
     return userCredential;
   } catch (error) {
     //  console.log(" signup error is there");
+    toast.error("something went wrong");
     return error;
   }
 };

@@ -4,7 +4,9 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import { AuthProvider } from "../context/AuthContext";
 // import { ContextProvider } from "../context/Context";
+
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Footer from "@/components/layout/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,9 +28,10 @@ export default function RootLayout({
       >
         <AuthProvider>
           <Navbar />
+
           {children}
           <Footer />
-          <ToastContainer />
+          <ToastContainer position="top-right" theme="dark" />
         </AuthProvider>
       </body>
     </html>

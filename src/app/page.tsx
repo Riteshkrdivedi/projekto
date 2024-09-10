@@ -20,7 +20,6 @@ export default function Home() {
         <Community />
         <Projects />
         <Resources />
-        <Footer />
       </div>
       {/* </AuthProvider> */}
     </div>

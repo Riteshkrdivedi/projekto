@@ -1,10 +1,8 @@
 "use client";
 
 import Blurcard from "@/components/BlurCard";
-import React, { useState } from "react";
-// import "../../app/globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import React, { useEffect, useState } from "react";
+
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import {
@@ -12,15 +10,17 @@ import {
   signInWithGithub,
   signUp,
 } from "../../../firebase/authservice";
-
+import { useAuth } from "../../../context/AuthContext";
 import Link from "next/link";
 import { Console } from "console";
-import router from "next/router";
+import { useRouter } from "next/navigation";
 
 const page = () => {
   const [email, setemail] = useState(" ");
   const [password, setpassword] = useState("");
   const [username, setusername] = useState("");
+  const router = useRouter();
+  const { user, loading } = useAuth();
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     // if (password.length < 6) {
     //   alert("Password should be atleast 6 characters long");
@@ -38,7 +38,11 @@ const page = () => {
       console.error(error);
     }
   };
-
+  useEffect(() => {
+    if (user) {
+      router.push("/registerProfileData");
+    }
+  }, [user]);
   return (
     <div className="relative w-full h-screen">
       <video
@@ -50,7 +54,7 @@ const page = () => {
       >
         <source src="/blackhole.webm" type="video/mp4" />
       </video>
-      <Navbar />
+
       <div className="relative   w-11/12 z-10 flex ml-4   md:ml-20 items-center justify-center md:pt-[7vh]  md:h-[100vh]">
         <Blurcard className=" w-full md:w-9/12 justify-center mt-[15vh] mb-[5vh] md:h[70vh]  h-[80vh]">
           <div className=" flex flex-row-reverse">
@@ -130,8 +134,6 @@ const page = () => {
           </div>
         </Blurcard>
       </div>
-
-      <Footer />
     </div>
   );
 };
