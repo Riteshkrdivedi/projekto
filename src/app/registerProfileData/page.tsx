@@ -1,7 +1,11 @@
 import React from "react";
 
 const page = () => {
-  return <div>register profile data</div>;
+  return (
+    <div>
+      <div className="w-full h-screen border"></div>
+    </div>
+  );
 };
 
 export default page;

@@ -39,7 +39,7 @@ const ProfilePage = () => {
       >
         <source src="galaxybg.mp4" type="video/mp4" />
       </video>
-      <div className="pt-[11vh] m-[2vh] gap-2 flex">
+      <div className="pt-[11vh] m-[2vh] mt-0 gap-2 flex">
         <div className=" flex flex-col gap-3">
           <BlurCard className="w-full md:w-[30vw] justify-center p-2 pb-[5vh] md:h-[42vh] h-[80vh]">
             <div className=" border border-gray-700 rounded-xl flex flex-col gap-2">
@@ -74,11 +74,12 @@ const ProfilePage = () => {
           </BlurCard>
           <BlurCard className="w-full md:w-[30vw] justify-center p-2 pb-[5vh] md:h-[42vh] h-[80vh]">
             <p> skills</p>
+
             <button
               className=" -gray-500 p-3 border border-gray-700 rounded-2xl hover:bg-red-500 "
-              onClick={signOut}
+              onClick={() => router.push("registerProfileData")}
             >
-              Sign Out
+              user details page
             </button>
           </BlurCard>
         </div>
