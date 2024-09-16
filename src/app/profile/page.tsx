@@ -6,6 +6,10 @@ import { useRouter } from "next/navigation";
 import { signOut } from "../../firebase/authservice";
 import { Rings, ThreeCircles, Triangle } from "react-loader-spinner";
 import BlurCard from "@/components/BlurCard";
+import Button from "@/components/Button";
+import { FaGithub, FaTools } from "react-icons/fa";
+import { AiOutlineTeam } from "react-icons/ai";
+import { VscTools } from "react-icons/vsc";
 
 const ProfilePage = () => {
   const { user } = useAuth();
@@ -83,8 +87,35 @@ const ProfilePage = () => {
             </button>
           </BlurCard>
         </div>
-        <BlurCard className="w-full md:w-[70vw] justify-center p-2 pb-[5vh] md:h-[85vh] h-[80vh]">
-          projects
+        <BlurCard className="w-full md:w-[70vw]  p-2 pb-[5vh] md:h-[85vh] h-[80vh]">
+          <div className=" border  rounded-xl flex  justify-evenly h-[40%]">
+            <div className="  w-3/4">
+              <div className=" h-3/4">
+                <h1 className="w-fit p-2 m-1">Project Name</h1>
+                <p className="w-full mt-3 rounded-xl h-2/3 p-2 block border border-gray-700">
+                  description
+                </p>
+              </div>
+              <div className=" flex pt-3 justify-start gap-3">
+                <Button className="border border-gray-600 p-1 rounded-xl hover:border-white text-white bg-[#0C0424]/60 hover:bg-transparent transition-all ease-in-out">
+                  Github <FaGithub className="inline " />
+                </Button>
+                <Button className="border border-gray-600 p-1 rounded-xl hover:border-white text-white bg-[#0C0424]/60 hover:bg-transparent transition-all ease-in-out">
+                  Members <AiOutlineTeam className="inline " />
+                </Button>
+                <Button className="border border-gray-600 p-1 rounded-xl hover:border-white text-white bg-[#0C0424]/60 hover:bg-transparent transition-all ease-in-out">
+                  Techstack
+                  <VscTools className="inline ml-1" />
+                </Button>
+              </div>
+            </div>
+            <div className=" flex flex-col  justify-around ">
+              <div className="  border p-1 px-2 flex ml-auto rounded-full w-fit ">
+                status
+              </div>
+              <div className="  border rounded-lg  w-48 h-48 ">img</div>
+            </div>
+          </div>
         </BlurCard>
       </div>
     </div>

@@ -3,14 +3,16 @@ import React from "react";
 const Button = ({
   children,
   className,
-}: //   onClick,
-{
+  onClick,
+}: {
   children: React.ReactNode;
   className: string;
-  //   onClick: () => void;
+  onClick?: () => void;
 }) => {
   return (
-    <button className={`px-4 py-2 rounded ${className}`}>{children}</button>
+    <button onClick={onClick} className={`px-4 py-2 rounded ${className}`}>
+      {children}
+    </button>
   );
 };
 
