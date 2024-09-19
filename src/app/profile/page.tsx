@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuth } from "@/context/AuthContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { signOut } from "../../firebase/authservice";
 import { Rings, ThreeCircles, Triangle } from "react-loader-spinner";
@@ -9,11 +9,44 @@ import BlurCard from "@/components/BlurCard";
 import Button from "@/components/Button";
 import { FaGithub, FaTools } from "react-icons/fa";
 import { AiOutlineTeam } from "react-icons/ai";
+import axios from "axios";
 import { VscTools } from "react-icons/vsc";
+// import { fetchUserData } from "@/../utils/fetchUserData";
 
 const ProfilePage = () => {
   const { user } = useAuth();
   const router = useRouter();
+
+  interface UserData {
+    username: string;
+    bio?: string;
+    profilePicture?: string; // Add other properties as needed
+  }
+
+  const [userData, setUserData] = useState<UserData | null>(null);
+  const [error, setError] = useState("");
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/api/users/fetchUserData",
+          { email: user.email }
+        );
+        if (response.data) {
+          setUserData(response.data as UserData);
+        }
+        console.log("user data", response.data);
+      } catch (error) {
+        console.log("error in fetching user data", error);
+        console.error("Error checking user:", error);
+      }
+    };
+
+    // Run the checkUser function when the component mounts
+    if (user) {
+      getUserData();
+    }
+  }, [user]);
 
   useEffect(() => {
     if (!user) {
@@ -49,31 +82,19 @@ const ProfilePage = () => {
             <div className=" border border-gray-700 rounded-xl flex flex-col gap-2">
               <div className=" h-36 gap-2 justify-stretch flex">
                 <div className=" p-3 ">
-                  {user.photoURL ? (
-                    <img
-                      className="w-[11vh] h-[11vh] rounded-full"
-                      src={user.photoURL}
-                      alt="profile"
-                    />
-                  ) : (
-                    <img
-                      className="w-[11vh] h-[11vh] rounded-full"
-                      src="guestdp.jpeg"
-                      alt="profile"
-                    />
-                  )}
+                  <img
+                    className="w-[11vh] h-[11vh] rounded-full"
+                    src={userData?.profilePicture}
+                    alt="profile"
+                  />
                 </div>
                 <div className=" flex flex-col gap-2 pt-5 p-3">
-                  <h1>Ritesh kumar Divedi</h1>
+                  <h1>{userData?.username}</h1>
                   <h3>USICT(GGSIPU)</h3>
                   <p>web developer</p>
                 </div>
               </div>
-              <div className=" p-3 h-40">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Doloribus, quae nostrum. Fuga fugit quas qui dolor voluptate,
-                cupiditate eveniet ex!
-              </div>
+              <div className=" p-3 h-40">{userData?.bio}</div>
             </div>
           </BlurCard>
           <BlurCard className="w-full md:w-[30vw] justify-center p-2 pb-[5vh] md:h-[42vh] h-[80vh]">

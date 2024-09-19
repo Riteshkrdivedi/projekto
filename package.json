@@ -10,8 +10,12 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",
+    "axios": "^1.7.7",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
     "firebase": "^10.13.1",
-    "mongoose": "^8.6.2",
+    "mongoose": "^8.6.3",
     "next": "^14.2.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -25,6 +29,7 @@
   "devDependencies": {
     "@react-three/drei": "^9.109.2",
     "@react-three/fiber": "^8.16.8",
+    "@types/axios": "^0.9.36",
     "@types/next": "^8.0.7",
     "@types/node": "^20.14.12",
     "@types/react": "^18.3.3",

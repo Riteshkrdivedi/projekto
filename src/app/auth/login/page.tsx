@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import Footer from "@/components/layout/Footer";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import axios from "axios";
+import connectMongoDB from "@/config/mongodb";
 import {
   signInWithGithub,
   signInWithGoogle,
@@ -17,6 +19,8 @@ import { redirect } from "next/dist/server/api-utils";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../../../context/AuthContext";
 
+// page    starteddddddd................................................................................................................
+
 const page = (): JSX.Element => {
   const router = useRouter();
   const { user, loading } = useAuth();
@@ -24,26 +28,47 @@ const page = (): JSX.Element => {
   const [password, setpassword] = useState("");
 
   const handlesubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    if (password.length < 6) {
-      alert("Password should be atleast 6 characters long");
-      return;
-    }
-
     e.preventDefault();
     try {
       const user = await signIn(email, password);
       console.log("LOgged in", user);
+      toast.success("Logged in successfully");
     } catch (error) {
       console.error(error);
       console.log("error in login");
+      toast.error("please sign up first");
     }
   };
 
   useEffect(() => {
+    const checkexisting = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/api/users/checkUser",
+          { email: user.email }
+        ); // Adjust the endpoint if needed
+        const isNewUser = (response.data as { isNewUser: boolean }).isNewUser; // Assuming the response contains this information
+        if (!isNewUser) {
+          // toast.success("User created successfully!");
+          console.log("old user");
+          router.push("/profile"); // Adjust the route as necessary
+        } else {
+          console.log("new user");
+          router.push("/registerProfileData");
+        }
+      } catch (error) {
+        console.error("Error checking user:", error);
+      }
+    };
+
+    // Run the checkUser function when the component mounts
     if (user) {
-      router.push("/profile");
+      checkexisting();
     }
   }, [user]);
+
+  // actual return here  ...................................................................................................................
+
   return (
     <div className="relative w-full h-screen">
       <video
@@ -100,6 +125,7 @@ const page = (): JSX.Element => {
                 required
                 onChange={(e) => setpassword(e.target.value)}
                 placeholder="Password"
+                min={6}
                 className="w-full md:w-2/4 p-2 bg-transparent text-white border-b border-white/50 focus:outline-none focus:border-white/70"
               />
               <button

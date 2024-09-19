@@ -2,7 +2,7 @@
 
 import Blurcard from "@/components/BlurCard";
 import React, { useEffect, useState } from "react";
-
+import connectMongoDB from "@/config/mongodb";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import {
@@ -14,6 +14,7 @@ import { useAuth } from "../../../context/AuthContext";
 import Link from "next/link";
 import { Console } from "console";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const page = () => {
   const [email, setemail] = useState(" ");
@@ -22,27 +23,42 @@ const page = () => {
   const router = useRouter();
   const { user, loading } = useAuth();
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
-    // if (password.length < 6) {
-    //   alert("Password should be atleast 6 characters long");
-    //   return;
-    // }
     e.preventDefault();
     try {
       const user = signUp(email, password);
       console.log("signed up", user);
-
-      // console.log(username + "   " + email + "   " + password + "logged in");
-
-      // router.push("/");
     } catch (error) {
       console.error(error);
     }
   };
+
   useEffect(() => {
+    const checkexisting = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/api/users/checkUser",
+          { email: user.email }
+        ); // Adjust the endpoint if needed
+        const isNewUser = (response.data as { isNewUser: boolean }).isNewUser; // Assuming the response contains this information
+        if (!isNewUser) {
+          // toast.success("User created successfully!");
+          console.log("old user");
+          router.push("/profile"); // Adjust the route as necessary
+        } else {
+          console.log("new user");
+          router.push("/registerProfileData");
+        }
+      } catch (error) {
+        console.error("Error checking user:", error);
+      }
+    };
+
+    // Run the checkUser function when the component mounts
     if (user) {
-      router.push("/registerProfileData");
+      checkexisting();
     }
   }, [user]);
+
   return (
     <div className="relative w-full h-screen">
       <video

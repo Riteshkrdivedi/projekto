@@ -1,21 +1,21 @@
+const mongoose = require("mongoose");
+
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: true,
+
     unique: true,
+    default: "guest",
   },
   email: {
     type: String,
     required: true,
     unique: true,
   },
-  password: {
-    type: String,
-    required: true,
-  },
+
   profilePicture: {
     type: String,
-    default: "default-profile-url",
+    default: "guestdp.jpeg",
   },
   linkedIn: {
     type: String,
@@ -51,3 +51,5 @@ const UserSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+const User = mongoose.models.User || mongoose.model("User", UserSchema);
+export default User;

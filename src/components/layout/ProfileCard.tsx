@@ -2,11 +2,42 @@ import React from "react";
 import { useAuth } from "../../context/AuthContext";
 import Link from "next/link";
 import { signOut } from "../../firebase/authservice";
-
-import { useEffect } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const ProfileCard = ({ className }: { className: string }) => {
   const { user } = useAuth();
+
+  interface UserData {
+    username: string;
+    bio?: string;
+    profilePicture?: string; // Add other properties as needed
+  }
+  const [userData, setUserData] = useState<UserData | null>(null);
+  const [error, setError] = useState("");
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/api/users/fetchUserData",
+          { email: user.email }
+        );
+        if (response.data) {
+          setUserData(response.data as UserData);
+        }
+        console.log("user data", response.data);
+      } catch (error) {
+        console.log("error in fetching user data", error);
+        console.error("Error checking user:", error);
+      }
+    };
+
+    // Run the checkUser function when the component mounts
+    if (user) {
+      getUserData();
+    }
+  }, [user]);
+
   if (user) {
     return (
       <div>
@@ -15,30 +46,14 @@ const ProfileCard = ({ className }: { className: string }) => {
         >
           <div className=" flex  gap-2">
             <div className=" ">
-              {user.photoURL ? (
-                <img
-                  className="w-12 h-12 rounded-full"
-                  src={user.photoURL}
-                  alt="profile"
-                />
-              ) : (
-                <img
-                  className="w-12 h-12  rounded-full"
-                  src="guestdp.jpeg"
-                  alt="profile"
-                />
-              )}
+              <img
+                className="w-12 h-12 rounded-full"
+                src={userData?.profilePicture}
+                alt="profile"
+              />
             </div>
             <div className="">
-              {user ? (
-                user.displayName ? (
-                  <p className=" font-semibold">{user.displayName}</p>
-                ) : (
-                  <div className=" font-semibold">{user.email}</div>
-                )
-              ) : (
-                <div>Guest</div>
-              )}
+              <p className=" font-semibold">{userData?.username}</p>
             </div>
           </div>
           <Link

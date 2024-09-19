@@ -17,11 +17,12 @@ export const signIn = async (email, password) => {
     );
     console.log(user);
 
-    toast("welcome", userCredential.user.displayName);
+    // toast("welcome", userCredential.displayName);
+
     return userCredential;
   } catch (error) {
     //  alert("please sign up first");
-    toast.error("please sign up first");
+    // toast.error("please sign up first");
     return error;
   }
 };

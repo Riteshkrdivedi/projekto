@@ -8,12 +8,43 @@ import { AiOutlineClose } from "react-icons/ai";
 import Link from "next/link";
 import { useAuth } from "../../context/AuthContext";
 import ProfileCard from "./ProfileCard";
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [showCard, setShowCard] = useState(true);
   const { user } = useAuth();
+
+  interface UserData {
+    username: string;
+    bio?: string;
+    profilePicture?: string; // Add other properties as needed
+  }
+  const [userData, setUserData] = useState<UserData | null>(null);
+  const [error, setError] = useState("");
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/api/users/fetchUserData",
+          { email: user.email }
+        );
+        if (response.data) {
+          setUserData(response.data as UserData);
+        }
+        console.log("user data", response.data);
+      } catch (error) {
+        console.log("error in fetching user data", error);
+        console.error("Error checking user:", error);
+      }
+    };
+
+    // Run the checkUser function when the component mounts
+    if (user) {
+      getUserData();
+    }
+  }, [user]);
 
   return (
     <div className="w-full flex justify-center mt-2 fixed top-2 z-50">
@@ -101,7 +132,7 @@ const Navbar = () => {
                   ) : (
                     <img
                       className="w-[5vh] h-[5vh] rounded-full"
-                      src="/guestdp.jpeg"
+                      src={userData?.profilePicture}
                       alt="profile"
                     />
                   )}
