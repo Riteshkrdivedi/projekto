@@ -7,6 +7,17 @@ const UserSchema = new mongoose.Schema({
     unique: true,
     default: "guest",
   },
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+  },
+  workplace: {
+    type: String,
+    default: "secret",
+  },
   email: {
     type: String,
     required: true,
@@ -39,6 +50,10 @@ const UserSchema = new mongoose.Schema({
   role: {
     type: String, // e.g., 'developer', 'engineer', 'admin'
     default: "developer",
+  },
+  skills: {
+    type: [String],
+    default: [],
   },
   projects: [
     {
