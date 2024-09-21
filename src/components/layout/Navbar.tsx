@@ -33,7 +33,7 @@ const Navbar = () => {
         if (response.data) {
           setUserData(response.data as UserData);
         }
-        console.log("user data", response.data);
+        // console.log("user data for navbar fetched");
       } catch (error) {
         console.log("error in fetching user data", error);
         console.error("Error checking user:", error);
@@ -123,19 +123,11 @@ const Navbar = () => {
                   href={"/profile"}
                   className=" border-red border w-[5vh]  hover:border-gray-50 text-gray-30 rounded-full md:block hidden  hover:font-bold shadow-lg    font-semibold bg-black transition-all"
                 >
-                  {user.photoURL ? (
-                    <img
-                      src={user.photoURL}
-                      alt="User profile"
-                      className="w-[5vh] h-[5vh] rounded-full"
-                    />
-                  ) : (
-                    <img
-                      className="w-[5vh] h-[5vh] rounded-full"
-                      src={userData?.profilePicture}
-                      alt="profile"
-                    />
-                  )}
+                  <img
+                    className="w-[5vh] h-[5vh] rounded-full"
+                    src={userData?.profilePicture || "/guestdp.jpeg"}
+                    alt="profile"
+                  />
                 </Link>
               </div>
             ) : (

@@ -8,7 +8,7 @@ import { slideInFromTop } from "../../../utils/motion";
 import { SparklesIcon } from "@heroicons/react/24/solid";
 import Button from "../../components/Button";
 import Robot3d from "../../components/3d/Robot3d";
-import AuthButton from "../components/AuthButton";
+import Link from "next/link";
 
 const HeroContent = () => {
   return (
@@ -57,7 +57,7 @@ const HeroContent = () => {
           className="py-2 button-primary md:text-center text-white cursor-pointer rounded-lg max-w-[200px]"
         >
           <Button className=" text-gray-30 p-6  rounded-2xl shadow-lg text-xl transition-all shadow-[#2A0E61]/50 hover:bg-[#6f52df] border-x-2 border-[#8046f5]">
-            Get Started
+            <Link href="/projectForm">Get Started</Link>
           </Button>
         </motion.a>
       </div>

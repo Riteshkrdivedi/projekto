@@ -19,6 +19,7 @@ const ProfilePage = () => {
 
   interface UserData {
     username: string;
+    firstName?: string;
     bio?: string;
     profilePicture?: string; // Add other properties as needed
   }
@@ -35,7 +36,7 @@ const ProfilePage = () => {
         if (response.data) {
           setUserData(response.data as UserData);
         }
-        console.log("user data", response.data);
+        // console.log("user data is fetched", response.data);
       } catch (error) {
         console.log("error in fetching user data", error);
         console.error("Error checking user:", error);
@@ -84,12 +85,19 @@ const ProfilePage = () => {
                 <div className=" p-3 ">
                   <img
                     className="w-[11vh] h-[11vh] rounded-full"
-                    src={userData?.profilePicture}
+                    src={userData?.profilePicture || "/guestdp.jpeg"}
                     alt="profile"
                   />
                 </div>
                 <div className=" flex flex-col gap-2 pt-5 p-3">
-                  <h1>{userData?.username}</h1>
+                  <div className="">
+                    <h1 className="text-xl font-medium">
+                      {userData?.firstName}
+                    </h1>
+                    <p className="text-gray-400 text-sm">
+                      {userData?.username}
+                    </p>
+                  </div>
                   <h3>USICT(GGSIPU)</h3>
                   <p>web developer</p>
                 </div>

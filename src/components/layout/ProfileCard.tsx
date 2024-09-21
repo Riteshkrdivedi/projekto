@@ -10,6 +10,7 @@ const ProfileCard = ({ className }: { className: string }) => {
 
   interface UserData {
     username: string;
+    firstName: string;
     bio?: string;
     profilePicture?: string; // Add other properties as needed
   }
@@ -25,7 +26,7 @@ const ProfileCard = ({ className }: { className: string }) => {
         if (response.data) {
           setUserData(response.data as UserData);
         }
-        console.log("user data", response.data);
+        // console.log("user data for profilecard fetched");
       } catch (error) {
         console.log("error in fetching user data", error);
         console.error("Error checking user:", error);
@@ -48,12 +49,12 @@ const ProfileCard = ({ className }: { className: string }) => {
             <div className=" ">
               <img
                 className="w-12 h-12 rounded-full"
-                src={userData?.profilePicture}
+                src={userData?.profilePicture || "/guestdp.jpeg"}
                 alt="profile"
               />
             </div>
             <div className="">
-              <p className=" font-semibold">{userData?.username}</p>
+              <p className=" font-semibold">{userData?.firstName}</p>
             </div>
           </div>
           <Link
