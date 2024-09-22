@@ -79,10 +79,11 @@ const Registerpage = () => {
               className="flex md:w-[40vw] flex-col  items-center gap-4"
             >
               <h1 className="md:ml-20  ml-5 text-5xl font-bold md:text-6xl w-fit bg-gradient-to-tr text-transparent bg-clip-text from-purple-50 md:pl-20  to-cyan-100">
-                Create an Account{" "}
+                Create an Account
               </h1>
               <p className="text-gray-700 mb-2 font-medium">
-                "Let's build something awesome! Join Projekto now."
+                &quot;Let&apos;s build something awesome! Join Projekto
+                now.&quot;
               </p>
               <div className="flex justify-around gap-5 ">
                 <button

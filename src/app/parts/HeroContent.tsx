@@ -38,8 +38,7 @@ const HeroContent = () => {
           </span>
           <span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
-              {" "}
-              Build Projects{" "}
+              Build Projects
             </span>
             Together
           </span>
