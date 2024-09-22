@@ -19,7 +19,7 @@ interface ProjectData {
   // Add other fields as necessary
 }
 
-const pages = () => {
+const Projectspage = () => {
   const [projectData, setProjectData] = useState<ProjectData[]>([]);
 
   useEffect(() => {
@@ -93,4 +93,4 @@ const pages = () => {
   );
 };
 
-export default pages;
+export default Projectspage;

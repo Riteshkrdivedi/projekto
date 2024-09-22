@@ -16,7 +16,7 @@ import { Console } from "console";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
-const page = () => {
+const Registerpage = () => {
   const [email, setemail] = useState(" ");
   const [password, setpassword] = useState("");
   const [username, setusername] = useState("");
@@ -154,4 +154,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Registerpage;

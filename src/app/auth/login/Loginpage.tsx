@@ -19,9 +19,9 @@ import { redirect } from "next/dist/server/api-utils";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../../../context/AuthContext";
 
-// page    starteddddddd................................................................................................................
+// Loginpage    starteddddddd................................................................................................................
 
-const page = (): JSX.Element => {
+const Loginpage = (): JSX.Element => {
   const router = useRouter();
   const { user, loading } = useAuth();
   const [email, setemail] = useState(" ");
@@ -160,4 +160,4 @@ const page = (): JSX.Element => {
   );
 };
 
-export default page;
+export default Loginpage;

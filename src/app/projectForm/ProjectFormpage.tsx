@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useAuth } from "@/context/AuthContext";
 
-const page = () => {
+const ProjectFormpage = () => {
   const { user } = useAuth();
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -182,4 +182,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ProjectFormpage;

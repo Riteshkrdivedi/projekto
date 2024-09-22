@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useAuth } from "@/context/AuthContext";
 import { GrFormNextLink, GrFormNext } from "react-icons/gr";
 
-const UserDetailForm = () => {
+const RegisterProfiledata = () => {
   const { user } = useAuth();
   const router = useRouter();
 
@@ -212,4 +212,4 @@ const UserDetailForm = () => {
   );
 };
 
-export default UserDetailForm;
+export default RegisterProfiledata;
