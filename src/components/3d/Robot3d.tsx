@@ -23,7 +23,7 @@ const Robot3d: React.FC = () => {
 
 const Robot: React.FC = () => {
   const group = useRef(null);
-  const { scene, animations } = useGLTF("/Robot.gltf");
+  const { scene, animations } = useGLTF("/robot.gltf");
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {

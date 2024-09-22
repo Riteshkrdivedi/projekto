@@ -29,7 +29,7 @@ const Jet3D: React.FC = () => {
 
 const Robot: React.FC = () => {
   const group = useRef(null);
-  const { scene, animations } = useGLTF("/Jet.gltf");
+  const { scene, animations } = useGLTF("/jet.gltf");
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
