@@ -1,38 +1,41 @@
 "use client";
+import { createContext, useContext, useState, useEffect } from "react";
+import axios from "axios";
+import { useAuth } from "./AuthContext"; // Assuming you're using a custom useAuth hook
 
-import { createContext, useContext, useEffect, useState } from "react";
-// import { getUserData } from "@core/api/user.api";
-import { useUserAuth } from "./AuthContext";
+const UserContext = createContext();
 
-const userContext = createContext();
-
-export function UserContextProvider({ children }) {
-  const [userDetails, setUserDetails] = useState(null);
-  const { user } = useUserAuth();
+export const UserProvider = ({ children }) => {
+  const { user } = useAuth(); // From Firebase authentication
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // clear user details on logout
-    if (!user?.uid) {
-      setUserDetails(null);
-      return;
-    }
-    // Make /me call
-    // getUserData()
-    //   .then((response) => {
-    //     setUserDetails(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
+    const fetchUserData = async () => {
+      if (user) {
+        try {
+          const response = await axios.post("/api/users/fetchUserData", {
+            email: user.email,
+          });
+          setUserData(response.data);
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        setLoading(false); // Ensure loading is false when no user
+      }
+    };
+
+    fetchUserData();
   }, [user]);
 
   return (
-    <userContext.Provider value={{ userDetails }}>
+    <UserContext.Provider value={{ userData, loading }}>
       {children}
-    </userContext.Provider>
+    </UserContext.Provider>
   );
-}
+};
 
-export function useUserDetails() {
-  return useContext(userContext);
-}
+export const useUser = () => useContext(UserContext);

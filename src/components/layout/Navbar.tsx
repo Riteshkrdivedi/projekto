@@ -4,50 +4,53 @@ import React from "react";
 import Button from "../Button";
 
 import { TiThMenu } from "react-icons/ti";
-import { AiOutlineClose } from "react-icons/ai";
+
 import Link from "next/link";
 import { useAuth } from "../../context/AuthContext";
 import ProfileCard from "./ProfileCard";
-import axios from "axios";
+
 import { useState, useEffect } from "react";
+import { useUser } from "../../context/UserContext";
+import { signOut } from "../../firebase/authservice";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [showCard, setShowCard] = useState(true);
   const { user } = useAuth();
+  const { userData, loading } = useUser();
 
   interface UserData {
     username: string;
     bio?: string;
     profilePicture?: string; // Add other properties as needed
   }
-  const [userData, setUserData] = useState<UserData | null>(null);
-  const [error, setError] = useState("");
-  useEffect(() => {
-    const getUserData = async () => {
-      try {
-        // const baseURL =
-        //   process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-        // console.log("base url for api call is : ", baseURL);
-        const response = await axios.post("/api/users/fetchUserData", {
-          email: user.email,
-        });
+  // const [userData, setUserData] = useState<UserData | null>(null);
+  // const [error, setError] = useState("");
+  // useEffect(() => {
+  //   const getUserData = async () => {
+  //     try {
+  //       // const baseURL =
+  //       //   process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+  //       // console.log("base url for api call is : ", baseURL);
+  //       const response = await axios.post("/api/users/fetchUserData", {
+  //         email: user.email,
+  //       });
 
-        if (response.data) {
-          setUserData(response.data as UserData);
-        }
-        // console.log("user data for navbar fetched");
-      } catch (error) {
-        console.log("error in fetching user data", error);
-        console.error("Error checking user:", error);
-      }
-    };
+  //       if (response.data) {
+  //         setUserData(response.data as UserData);
+  //       }
+  //       // console.log("user data for navbar fetched");
+  //     } catch (error) {
+  //       console.log("error in fetching user data", error);
+  //       console.error("Error checking user:", error);
+  //     }
+  //   };
 
-    // Run the checkUser function when the component mounts
-    if (user) {
-      getUserData();
-    }
-  }, [user]);
+  //   // Run the checkUser function when the component mounts
+  //   if (user) {
+  //     getUserData();
+  //   }
+  // }, [user]);
 
   return (
     <div className="w-full flex justify-center mt-2 fixed top-2 z-50">
@@ -212,6 +215,11 @@ const Navbar = () => {
               >
                 Resources
               </Link>
+            </li>
+            <li className="w-full list-none text-center bg-red-500  hover:text-red-500 hover:bg-slate-100 rounded-3xl py-3 text-2xl">
+              <button onClick={() => signOut()} className="">
+                Log Out
+              </button>
             </li>
             {/* <li className="w-full list-none text-center hover:animate-bounce hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl">
              

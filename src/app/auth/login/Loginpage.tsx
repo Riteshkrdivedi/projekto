@@ -7,7 +7,7 @@ import Footer from "@/components/layout/Footer";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import axios from "axios";
-import connectMongoDB from "@/config/mongodb";
+
 import {
   signInWithGithub,
   signInWithGoogle,
@@ -15,7 +15,7 @@ import {
 } from "../../../firebase/authservice";
 
 import Link from "next/link";
-import { redirect } from "next/dist/server/api-utils";
+
 import { useRouter } from "next/navigation";
 import { useAuth } from "../../../context/AuthContext";
 

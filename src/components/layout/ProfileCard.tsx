@@ -2,11 +2,13 @@ import React from "react";
 import { useAuth } from "../../context/AuthContext";
 import Link from "next/link";
 import { signOut } from "../../firebase/authservice";
-import axios from "axios";
+
+import { useUser } from "../../context/UserContext";
 import { useEffect, useState } from "react";
 
 const ProfileCard = ({ className }: { className: string }) => {
   const { user } = useAuth();
+  const { userData, loading } = useUser();
 
   interface UserData {
     username: string;
@@ -14,32 +16,33 @@ const ProfileCard = ({ className }: { className: string }) => {
     bio?: string;
     profilePicture?: string; // Add other properties as needed
   }
-  const [userData, setUserData] = useState<UserData | null>(null);
-  const [error, setError] = useState("");
-  useEffect(() => {
-    const getUserData = async () => {
-      try {
-        // const baseURL =
-        //   process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-        const response = await axios.post("/api/users/fetchUserData", {
-          email: user.email,
-        });
 
-        if (response.data) {
-          setUserData(response.data as UserData);
-        }
-        // console.log("user data for profilecard fetched");
-      } catch (error) {
-        console.log("error in fetching user data", error);
-        console.error("Error checking user:", error);
-      }
-    };
+  // const [userData, setUserData] = useState<UserData | null>(null);
+  // const [error, setError] = useState("");
+  // useEffect(() => {
+  //   const getUserData = async () => {
+  //     try {
+  //       // const baseURL =
+  //       //   process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+  //       const response = await axios.post("/api/users/fetchUserData", {
+  //         email: user.email,
+  //       });
 
-    // Run the checkUser function when the component mounts
-    if (user) {
-      getUserData();
-    }
-  }, [user]);
+  //       if (response.data) {
+  //         setUserData(response.data as UserData);
+  //       }
+  //       // console.log("user data for profilecard fetched");
+  //     } catch (error) {
+  //       console.log("error in fetching user data", error);
+  //       console.error("Error checking user:", error);
+  //     }
+  //   };
+
+  //   // Run the checkUser function when the component mounts
+  //   if (user) {
+  //     getUserData();
+  //   }
+  // }, [user]);
 
   if (user) {
     return (

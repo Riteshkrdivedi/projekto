@@ -4,7 +4,7 @@ import React, { use } from "react";
 import StarBackground from "@/components/layout/StarBackground";
 import { AiOutlineTeam } from "react-icons/ai";
 import { MdArrowOutward } from "react-icons/md";
-
+import { Rings, ThreeCircles, Triangle } from "react-loader-spinner";
 import Button from "@/components/Button";
 import { FaGithub, FaUser } from "react-icons/fa";
 import { useEffect, useState } from "react";
@@ -44,9 +44,19 @@ const Projectspage = () => {
 
     fetchProjects();
   }, []);
+  if (!projectData) {
+    return (
+      <p>
+        <Rings
+          color="white"
+          wrapperClass="w-[100vw] h-[100vh]  flex justify-center items-center"
+        />
+      </p>
+    );
+  }
 
   return (
-    <div className="h-fit w-screen p-5 pt-36">
+    <div className="h-fit  w-[98.8vw] p-5 pt-36">
       <StarBackground />
       <div className=" md:text-3xl md:font-bold text-xl font-semibold">
         All projects

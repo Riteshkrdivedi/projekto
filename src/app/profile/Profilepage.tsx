@@ -9,12 +9,13 @@ import BlurCard from "@/components/BlurCard";
 import Button from "@/components/Button";
 import { FaGithub, FaTools } from "react-icons/fa";
 import { AiOutlineTeam } from "react-icons/ai";
-import axios from "axios";
+import { useUser } from "../../context/UserContext";
 import { MdArrowOutward } from "react-icons/md";
 // import { fetchUserData } from "@/../utils/fetchUserData";
 
 const ProfilePage = () => {
   const { user } = useAuth();
+  const { userData, loading } = useUser();
   const router = useRouter();
 
   interface UserData {
@@ -24,40 +25,51 @@ const ProfilePage = () => {
     profilePicture?: string; // Add other properties as needed
   }
 
-  const [userData, setUserData] = useState<UserData | null>(null);
-  const [error, setError] = useState("");
+  if (!user) {
+    return (
+      <p>
+        <Rings
+          color="white"
+          wrapperClass="w-[100vw] h-[100vh]  flex justify-center items-center"
+        />
+      </p>
+    );
+  }
+
+  // const [userData, setUserData] = useState<UserData | null>(null);
+  // const [error, setError] = useState("");
   // useEffect(() => {
   //   if (!user) {
   //     router.push("auth/login");
   //   }
   // }, [user, router]);
 
-  useEffect(() => {
-    const getUserData = async () => {
-      try {
-        // const baseURL =
-        //   process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-        // console.log("base url for api call is : ", baseURL);
-        const response = await axios.post("/api/users/fetchUserData", {
-          email: user.email,
-        });
-        if (response.data) {
-          setUserData(response.data as UserData);
-        }
-        // console.log("user data is fetched", response.data);
-      } catch (error) {
-        console.log("error in fetching user data", error);
-        console.error("Error checking user:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const getUserData = async () => {
+  //     try {
+  //       // const baseURL =
+  //       //   process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+  //       // console.log("base url for api call is : ", baseURL);
+  //       const response = await axios.post("/api/users/fetchUserData", {
+  //         email: user.email,
+  //       });
+  //       if (response.data) {
+  //         setUserData(response.data as UserData);
+  //       }
+  //       // console.log("user data is fetched", response.data);
+  //     } catch (error) {
+  //       console.log("error in fetching user data", error);
+  //       console.error("Error checking user:", error);
+  //     }
+  //   };
 
-    // Run the checkUser function when the component mounts
-    if (user) {
-      getUserData();
-    } else {
-      router.push("auth/login");
-    }
-  }, [user]);
+  // // Run the checkUser function when the component mounts
+  // if (user) {
+  //   getUserData();
+  // } else {
+  //   router.push("auth/login");
+  //   // }
+  // }, [user]);
 
   if (!user) {
     return (
@@ -71,7 +83,7 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="relative w-full h-screen ">
+    <div className="relative w-full h-fit md:h-screen ">
       <video
         className="absolute -z-10 top-0 left-0 w-full h-full object-cover"
         autoPlay
@@ -120,7 +132,7 @@ const ProfilePage = () => {
             </button>
           </BlurCard>
         </div>
-        <BlurCard className="w-full md:w-[70vw]  p-2 pb-[5vh] md:h-[85vh] h-fit ">
+        <BlurCard className="w-full md:w-[70vw] md:overflow-y-auto  p-2 pb-[5vh] md:h-[85vh] h-fit ">
           <div className=" border  rounded-xl flex md:flex-row flex-col-reverse  justify-evenly h-fit md:h-[40%]">
             <div className=" w-11/12 md:mx-0 mx-auto md:w-3/4">
               <div className="  h-3/4">

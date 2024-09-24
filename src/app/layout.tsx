@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import { AuthProvider } from "../context/AuthContext";
+import { UserProvider } from "../context/UserContext";
 // import { ContextProvider } from "../context/Context";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -27,11 +28,13 @@ export default function RootLayout({
         className={`${inter.className} bg-[#030014] text-white overflow-y-scroll overflow-x-hidden}`}
       >
         <AuthProvider>
-          <Navbar />
+          <UserProvider>
+            <Navbar />
 
-          {children}
-          <Footer />
-          <ToastContainer position="top-right" theme="dark" />
+            {children}
+            <Footer />
+            <ToastContainer position="top-right" theme="dark" />
+          </UserProvider>
         </AuthProvider>
       </body>
     </html>
