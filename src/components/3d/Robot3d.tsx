@@ -34,7 +34,7 @@ const Robot: React.FC = () => {
       }
     }
   }, [actions]);
-
+  console.log("robot loaded");
   return (
     <primitive ref={group} object={scene} scale={7} position={[0, -3, 0]} />
   );

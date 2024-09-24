@@ -26,10 +26,14 @@ const Navbar = () => {
   useEffect(() => {
     const getUserData = async () => {
       try {
+        const baseURL =
+          process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+        console.log("base url for api call is : ", baseURL);
         const response = await axios.post(
-          "http://localhost:3000/api/users/fetchUserData",
+          `${baseURL}/api/users/fetchUserData`,
           { email: user.email }
         );
+
         if (response.data) {
           setUserData(response.data as UserData);
         }
@@ -69,27 +73,24 @@ const Navbar = () => {
 
           <div className="w-[600px] h-full  flex-row items-center xl:flex md:visible hidden    justify-between md:mr-20">
             <div className="flex items-center  justify-between w-full h-auto border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-200">
-              <Link
-                href="/"
-                className="cursor-pointer hover:animate-pulse   hover:text-[#b49ee0]"
-              >
+              <Link href="/" className="cursor-pointer    hover:text-[#b49ee0]">
                 Home
               </Link>
               <Link
                 href="/projects"
-                className="cursor-pointer  hover:text-[#b49ee0] hover:animate-pulse"
+                className="cursor-pointer  hover:text-[#b49ee0] "
               >
                 Projects
               </Link>
               <Link
                 href="/community"
-                className="cursor-pointer  hover:text-[#b49ee0] hover:animate-pulse"
+                className="cursor-pointer  hover:text-[#b49ee0] "
               >
                 Community
               </Link>
               <Link
                 href="#resoures"
-                className="cursor-pointer  hover:text-[#b49ee0] hover:animate-pulse"
+                className="cursor-pointer  hover:text-[#b49ee0] "
               >
                 Resources
               </Link>
@@ -151,46 +152,64 @@ const Navbar = () => {
             }`}
             style={{ transition: "transform 0.3 ease , opacity 0.3 ease" }}
           >
-            <li className="w-full list-none  text-center hover:animate-pulse hover:text-purple-500  rounded-3xl py-3 text-2xl">
+            <li className="w-full list-none  text-center  hover:text-purple-500  rounded-3xl py-3 text-2xl">
               <Button
                 onClick={() => setOpen(false)}
                 className="  text-gray-900 rounded-3xl w-2/3    shadow-lg  bg-[#c8c4d0]"
               >
-                LogIn
+                {user ? (
+                  <div>
+                    <Link
+                      href={"/profile"}
+                      className="w-full list-none text-center  hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl"
+                    >
+                      Profile
+                    </Link>
+                  </div>
+                ) : (
+                  <div>
+                    <Link
+                      href={"/auth/login"}
+                      className="w-full list-none text-center  hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl"
+                    >
+                      LogIn
+                    </Link>
+                  </div>
+                )}
               </Button>
             </li>
-            <li className="w-full list-none text-center hover:animate-pulse hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl">
+            <li className="w-full list-none text-center  hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl">
               <Link
                 onClick={() => setOpen(false)}
                 href="/"
-                className="cursor-pointer hover:animate-pulse   hover:text-[#b49ee0]"
+                className="cursor-pointer    hover:text-[#b49ee0]"
               >
                 Home
               </Link>
             </li>
-            <li className="w-full list-none text-center hover:animate-pulse hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl">
+            <li className="w-full list-none text-center  hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl">
               <Link
                 onClick={() => setOpen(false)}
                 href="/projects"
-                className="cursor-pointer  hover:text-[#b49ee0] hover:animate-pulse"
+                className="cursor-pointer  hover:text-[#b49ee0] "
               >
                 Projects
               </Link>
             </li>
-            <li className="w-full list-none text-center hover:animate-pulse hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl">
+            <li className="w-full list-none text-center  hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl">
               <Link
                 onClick={() => setOpen(false)}
                 href="/community"
-                className="cursor-pointer  hover:text-[#b49ee0] hover:animate-pulse"
+                className="cursor-pointer  hover:text-[#b49ee0] "
               >
                 Community
               </Link>
             </li>
-            <li className="w-full list-none text-center hover:animate-pulse hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl">
+            <li className="w-full list-none text-center  hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl">
               <Link
                 onClick={() => setOpen(false)}
                 href="/resoures"
-                className="cursor-pointer  hover:text-[#b49ee0] hover:animate-pulse"
+                className="cursor-pointer  hover:text-[#b49ee0] "
               >
                 Resources
               </Link>

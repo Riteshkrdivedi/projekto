@@ -19,10 +19,13 @@ const ProfileCard = ({ className }: { className: string }) => {
   useEffect(() => {
     const getUserData = async () => {
       try {
+        const baseURL =
+          process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
         const response = await axios.post(
-          "http://localhost:3000/api/users/fetchUserData",
+          `${baseURL}/api/users/fetchUserData`,
           { email: user.email }
         );
+
         if (response.data) {
           setUserData(response.data as UserData);
         }
