@@ -27,10 +27,10 @@ const Projectspage = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const baseURL =
-          process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-        console.log("base url for api call is : ", baseURL);
-        const response = await axios.get(`${baseURL}/api/projects`);
+        // const baseURL =
+        //   process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+        // console.log("base url for api call is : ", baseURL);
+        const response = await axios.get("/api/projects");
 
         // const response = await axios.get("http://localhost:3000/api/projects");
         // console.log(response.data);
@@ -62,7 +62,7 @@ const Projectspage = () => {
                 <h1 className="w-fit p-2 m-1 md:my-3 md:text-xl font-semibold  text-lg">
                   {p.projectName}
                 </h1>
-                <p className="w-full mt-1 text-gray-400 text-sm md:text-base overflow-scroll  md:mt-3 rounded-xl md:h-2/3 h-[11vh]  p-2 block border border-gray-700">
+                <p className="w-full mt-1 text-gray-400 text-sm md:text-base overflow-y-auto  md:mt-3 rounded-xl md:h-2/3 h-[11vh]  p-2 block border border-gray-700">
                   {p.description}
                 </p>
               </div>

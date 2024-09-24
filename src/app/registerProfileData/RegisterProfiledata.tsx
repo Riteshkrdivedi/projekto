@@ -41,10 +41,7 @@ const RegisterProfiledata = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/users",
-        formData
-      ); // Adjust the endpoint if needed
+      const response = await axios.post("/api/users", formData); // Adjust the endpoint if needed
       if (response.status === 201) {
         toast.success("User created successfully!");
         router.push("/profile"); // Adjust the route as necessary

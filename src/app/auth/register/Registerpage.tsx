@@ -35,10 +35,9 @@ const Registerpage = () => {
   useEffect(() => {
     const checkexisting = async () => {
       try {
-        const response = await axios.post(
-          "http://localhost:3000/api/users/checkUser",
-          { email: user.email }
-        ); // Adjust the endpoint if needed
+        const response = await axios.post("/api/users/checkUser", {
+          email: user.email,
+        }); // Adjust the endpoint if needed
         const isNewUser = (response.data as { isNewUser: boolean }).isNewUser; // Assuming the response contains this information
         if (!isNewUser) {
           // toast.success("User created successfully!");

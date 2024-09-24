@@ -35,13 +35,12 @@ const ProfilePage = () => {
   useEffect(() => {
     const getUserData = async () => {
       try {
-        const baseURL =
-          process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-        console.log("base url for api call is : ", baseURL);
-        const response = await axios.post(
-          `${baseURL}/api/users/fetchUserData`,
-          { email: user.email }
-        );
+        // const baseURL =
+        //   process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+        // console.log("base url for api call is : ", baseURL);
+        const response = await axios.post("/api/users/fetchUserData", {
+          email: user.email,
+        });
         if (response.data) {
           setUserData(response.data as UserData);
         }
