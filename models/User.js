@@ -56,12 +56,7 @@ const UserSchema = new mongoose.Schema({
     type: [String],
     default: [],
   },
-  projects: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Project",
-    },
-  ],
+  projects: [{ type: mongoose.Schema.Types.ObjectId, ref: "Project" }],
   joinedAt: {
     type: Date,
     default: Date.now,

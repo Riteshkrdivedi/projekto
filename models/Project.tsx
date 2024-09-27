@@ -5,8 +5,8 @@ interface ProjectDocument extends Document {
   projectName: string;
   description: string;
   techStack: string[];
-  createdBy: string; // Reference to the user
-  teamMembers: string[]; // Array of user IDs
+  createdBy: { type: mongoose.Schema.Types.ObjectId; ref: "User" }; // Reference to the user
+  teamMembers: [{ type: mongoose.Schema.Types.ObjectId; ref: "User" }]; // Array of user IDs
   githubLink?: string;
   liveLink?: string;
   status: string;
@@ -16,7 +16,7 @@ interface ProjectDocument extends Document {
 }
 
 // Create the schema for the project
-const ProjectSchema: Schema<ProjectDocument> = new Schema({
+const ProjectSchema = new mongoose.Schema({
   projectName: {
     type: String,
     required: [true, "Project name is required"],
@@ -72,5 +72,6 @@ ProjectSchema.pre("save", function (next) {
   next();
 });
 
-export default mongoose.models.Project ||
-  mongoose.model<ProjectDocument>("Project", ProjectSchema);
+const Project =
+  mongoose.models.Project || mongoose.model("Project", ProjectSchema);
+export default Project;

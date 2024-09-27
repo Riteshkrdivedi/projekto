@@ -149,7 +149,7 @@ const Navbar = () => {
             onClick={() => setOpen(!open)}
           />
           <div
-            className={`text-white absolute xl:hidden top-24 left-0 w-full h-screen bg-[#090516] flex flex-col items-center gap-6 font-semibold text-lg transform transition-transform ${
+            className={`text-white absolute xl:hidden top-24 left-0 w-full  h-screen bg-[#090516] flex flex-col items-center gap-6 font-semibold text-lg transform transition-transform ${
               open ? "block" : "hidden"
             }`}
             style={{ transition: "transform 0.3 ease , opacity 0.3 ease" }}
@@ -216,8 +216,16 @@ const Navbar = () => {
                 Resources
               </Link>
             </li>
-            <li className="w-full list-none text-center bg-red-500  hover:text-red-500 hover:bg-slate-100 rounded-3xl py-3 text-2xl">
-              <button onClick={() => signOut()} className="">
+            <li
+              className={`w-full list-none text-center bg-red-500  hover:text-red-500 hover:bg-slate-100 rounded-3xl py-3 text-2xl  user ? block : hidden`}
+            >
+              <button
+                onClick={() => {
+                  signOut();
+                  setOpen(false);
+                }}
+                className=""
+              >
                 Log Out
               </button>
             </li>

@@ -4,25 +4,45 @@ import { useAuth } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 // import { signOut } from "../../firebase/authservice";
-import { Rings, ThreeCircles, Triangle } from "react-loader-spinner";
+import { Rings } from "react-loader-spinner";
 import BlurCard from "@/components/BlurCard";
 import Button from "@/components/Button";
 import { FaGithub, FaTools } from "react-icons/fa";
 import { AiOutlineTeam } from "react-icons/ai";
 import { useUser } from "../../context/UserContext";
 import { MdArrowOutward } from "react-icons/md";
-// import { fetchUserData } from "@/../utils/fetchUserData";
+
+import Link from "next/link";
 
 const ProfilePage = () => {
   const { user } = useAuth();
   const { userData, loading } = useUser();
   const router = useRouter();
-
+  interface Project {
+    projectName: string;
+    description?: string;
+    githubLink?: string;
+    liveLink?: string;
+    status?: string;
+    projectImage?: string;
+  }
+  console.log(userData);
   interface UserData {
     username: string;
     firstName?: string;
     bio?: string;
     profilePicture?: string; // Add other properties as needed
+    projects?: {
+      projectName: string;
+      githubLink?: string;
+      liveLink?: string;
+      status?: string;
+      projectImage?: string;
+    }[];
+  }
+
+  if (!user) {
+    router.push("/auth/login");
   }
 
   if (!user) {
@@ -30,7 +50,7 @@ const ProfilePage = () => {
       <p>
         <Rings
           color="white"
-          wrapperClass="w-[100vw] h-[100vh]  flex justify-center items-center"
+          wrapperClass="w-[98.50vw] h-[100vh]  flex justify-center items-center"
         />
       </p>
     );
@@ -71,21 +91,11 @@ const ProfilePage = () => {
   //   // }
   // }, [user]);
 
-  if (!user) {
-    return (
-      <p>
-        <Rings
-          color="white"
-          wrapperClass="w-[100vw] h-[100vh]  flex justify-center items-center"
-        />
-      </p>
-    );
-  }
-
   return (
     <div className="relative w-full h-fit md:h-screen ">
+      <div className="md:hidden absolute w-full h-full bg-gradient-to-tr from-[#03001417] via-[#2A0E61]/50 to-[#0e0d0d]"></div>
       <video
-        className="absolute -z-10 top-0 left-0 w-full h-full object-cover"
+        className="absolute -z-10 top-0 md:block hidden left-0 w-full h-full object-cover"
         autoPlay
         loop
         muted
@@ -109,13 +119,14 @@ const ProfilePage = () => {
                   <div className="">
                     <h1 className="text-xl font-medium">
                       {userData?.firstName}
+                      {userData?.lastName}
                     </h1>
                     <p className="text-gray-400 text-sm">
                       {userData?.username}
                     </p>
                   </div>
-                  <h3>USICT(GGSIPU)</h3>
-                  <p>web developer</p>
+                  <h3>{userData?.workplace}</h3>
+                  <p>{userData?.role}r</p>
                 </div>
               </div>
               <div className=" p-3 h-40">{userData?.bio}</div>
@@ -133,51 +144,59 @@ const ProfilePage = () => {
           </BlurCard>
         </div>
         <BlurCard className="w-full md:w-[70vw] md:overflow-y-auto  p-2 pb-[5vh] md:h-[85vh] h-fit ">
-          <div className=" border  rounded-xl flex md:flex-row flex-col-reverse  justify-evenly h-fit md:h-[40%]">
-            <div className=" w-11/12 md:mx-0 mx-auto md:w-3/4">
-              <div className="  h-3/4">
-                <h1 className="w-fit md:my-2 p-2 m-1 text-lg md:text-xl font-semibold md:font-bold">
-                  Project Name
-                </h1>
-                <p className="w-full  text-gray-400 text-sm md:text-base   overflow-y-auto  md:mt-3 rounded-xl md:h-2/3 h-[11vh]  p-2 block border border-gray-70">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Incidunt eaque distinctio quaerat, amet commodi fuga. Eum
-                  placeat maxime a provident.
-                </p>
+          {userData && userData.projects && userData.projects.length > 0 ? (
+            userData.projects.map((project: Project) => (
+              <div
+                key={project.projectName}
+                className="border rounded-xl flex md:flex-row flex-col-reverse justify-evenly h-fit md:h-[40%]"
+              >
+                <div className="w-11/12 md:mx-0 mx-auto md:w-3/4">
+                  <div className="h-3/4">
+                    <h1 className="w-fit md:my-2 p-2 m-1 text-lg md:text-xl font-semibold md:font-bold">
+                      {project.projectName}
+                    </h1>
+                    <p className="w-full text-gray-400 text-sm md:text-base overflow-y-auto md:mt-3 rounded-xl md:h-2/3 h-[11vh] p-2 block border border-gray-70">
+                      {project.description}
+                    </p>
+                  </div>
+                  <div className="flex py-4 md:pt-0 justify-start gap-3">
+                    <Button className="border border-gray-600 p-1 px-5 rounded-xl hover:border-white text-white bg-[#0C0424]/60 hover:bg-transparent transition-all ease-in-out">
+                      <p className="hidden md:inline">Members</p>
+                      <AiOutlineTeam className="inline" />
+                    </Button>
+                    <Button className="border border-gray-600 p-1 px-5 rounded-xl hover:border-white text-white bg-[#0C0424]/60 hover:bg-transparent transition-all ease-in-out">
+                      <Link href="{project.githubLink}">
+                        <p className="hidden md:inline">Github</p>
+                        <FaGithub className="inline" />
+                      </Link>
+                    </Button>
+                    <Button className="border border-gray-600 p-1 px-5 rounded-xl hover:border-white text-white bg-[#0C0424]/60 hover:bg-transparent transition-all ease-in-out">
+                      <Link href={"{project.liveLink}"}>
+                        <p className="hidden md:inline">Live</p>
+                        <MdArrowOutward className="inline ml-1" />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+                <div className="flex flex-col justify-around">
+                  <div
+                    className={`border p-1 px-2 md:my-0 my-1 md:text-base text-xs flex ml-auto rounded-full w-fit project.status===in progress ? bg-red-500: bg-green-500 `}
+                  >
+                    {project.status}
+                  </div>
+                  <div className="border rounded-lg h-[23vh] w-11/12 mx-auto md:w-48 md:h-48">
+                    <img
+                      className="w-full h-full rounded-lg object-cover"
+                      src={project.projectImage || "/guestdp.jpeg"}
+                      alt={project.projectName}
+                    />
+                  </div>
+                </div>
               </div>
-              <div className=" flex  py-4 md:pt-0 justify-start gap-3">
-                <Button className="border border-gray-600 p-1  px-5  rounded-xl hover:border-white text-white bg-[#0C0424]/60 hover:bg-transparent transition-all ease-in-out">
-                  <p className="hidden md:inline">Members</p>
-                  <AiOutlineTeam className="inline " />
-                </Button>
-                <Button className="border border-gray-600 p-1  px-5  rounded-xl hover:border-white text-white bg-[#0C0424]/60 hover:bg-transparent transition-all ease-in-out">
-                  {/* <a href={p.githubLink}> */}
-                  <p className="hidden md:inline">Github</p>
-                  <FaGithub className="inline " />
-                  {/* </a> */}
-                </Button>
-
-                <Button className="border border-gray-600 p-1 px-5   rounded-xl hover:border-white text-white bg-[#0C0424]/60 hover:bg-transparent transition-all ease-in-out">
-                  {/* <a href={p.liveLink}> */}
-                  <p className="hidden md:inline">Live</p>
-                  <MdArrowOutward className="inline ml-1" />
-                  {/* </a> */}
-                </Button>
-              </div>
-            </div>
-            <div className=" flex flex-col  justify-around ">
-              <div className="  border p-1 px-2 md:my-0 my-1 md:text-base text-xs flex ml-auto rounded-full w-fit ">
-                status
-              </div>
-              <div className="  border rounded-lg  h-[23vh] w-11/12 mx-auto md:w-48 md:h-48 ">
-                <img
-                  className="w-full h-full  rounded-lg object-cover"
-                  src="/guestdp.jpeg"
-                  alt=""
-                />
-              </div>
-            </div>
-          </div>
+            ))
+          ) : (
+            <p>No projects to show.</p>
+          )}
         </BlurCard>
       </div>
     </div>
