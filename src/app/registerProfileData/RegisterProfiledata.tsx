@@ -54,7 +54,7 @@ const RegisterProfiledata = () => {
 
   return (
     <form
-      className="h-screen flex text-black justify-center pt-12 mx-auto flex-col gap-4 w-[95vw]"
+      className="h-screen flex text-black justify-center pt-[50vh] md:pt-12 mx-auto flex-col gap-4 w-[95vw]"
       onSubmit={handleSubmit}
     >
       <div className="flex">

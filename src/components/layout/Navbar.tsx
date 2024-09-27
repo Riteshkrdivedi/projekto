@@ -217,7 +217,9 @@ const Navbar = () => {
               </Link>
             </li>
             <li
-              className={`w-full list-none text-center bg-red-500  hover:text-red-500 hover:bg-slate-100 rounded-3xl py-3 text-2xl  user ? block : hidden`}
+              className={`w-full list-none text-center bg-red-500  hover:text-red-500 hover:bg-slate-100 rounded-3xl py-3 text-2xl  ${
+                user ? "block" : "hidden"
+              }`}
             >
               <button
                 onClick={() => {
