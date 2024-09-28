@@ -9,7 +9,7 @@ import mongoose from "mongoose";
 export async function GET() {
   await connectMongoDB();
   const projects = await Project.find();
-  console.log(projects);
+  // console.log(projects);
   return new Response(JSON.stringify(projects), { status: 200 });
 }
 
@@ -21,14 +21,14 @@ export async function POST(req: Request) {
       description,
       techStack,
       createdBy,
-      collaboratorUsernames,
+      teamMembers,
       githubLink,
       liveLink,
       status,
       projectImage,
     } = await req.json();
 
-    if (!projectName || !description || !techStack || !createdBy) {
+    if (!projectName || !description || !createdBy) {
       return NextResponse.json(
         { success: false, message: "Missing required fields" },
         { status: 400 }
@@ -44,25 +44,28 @@ export async function POST(req: Request) {
     }
 
     const collaborators = await User.find({
-      username: { $in: collaboratorUsernames },
+      username: { $in: teamMembers },
     });
+    // console.log("collaborators : ", collaborators);
+    // console.log("collaboratorsusename : ", teamMembers);
+    // if (collaborators.length !== teamMembers.length) {
+    //   console.log("collaborators.length : ", collaborators.length);
+    //   console.log("teamMembers.length : ", teamMembers.length);
+    //   const foundUsernames = collaborators.map(
+    //     (collaborator) => collaborator.username
+    //   );
+    //   const missingUsernames = teamMembers.filter(
+    //     (username: string) => !foundUsernames.includes(username)
+    //   );
 
-    if (collaborators.length !== collaboratorUsernames.length) {
-      const foundUsernames = collaborators.map(
-        (collaborator) => collaborator.username
-      );
-      const missingUsernames = collaboratorUsernames.filter(
-        (username: string) => !foundUsernames.includes(username)
-      );
-
-      return NextResponse.json(
-        {
-          success: false,
-          message: `Collaborators not found: ${missingUsernames.join(", ")}`,
-        },
-        { status: 400 }
-      );
-    }
+    //   return NextResponse.json(
+    //     {
+    //       success: false,
+    //       message: `Collaborators not found: ${missingUsernames.join(", ")}`,
+    //     },
+    //     { status: 400 }
+    //   );
+    // }
 
     const newProject = new Project({
       projectName,
@@ -75,10 +78,9 @@ export async function POST(req: Request) {
       status,
       projectImage,
     });
-    console.log("yahaan tk shi h  :");
 
     const savedProject = await newProject.save();
-    console.log("yahaan tk shi h -2  :");
+    // console.log("yahaan tk shi h -4 :");
 
     const adduserproject = await axios.patch(
       "http://localhost:3000/api/users/updateUserProjects",

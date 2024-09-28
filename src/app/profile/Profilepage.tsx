@@ -143,7 +143,7 @@ const ProfilePage = () => {
             </button>
           </BlurCard>
         </div>
-        <BlurCard className="w-full md:w-[70vw] md:overflow-y-auto  gap-4 flex flex-col p-2 pb-[5vh] md:h-[85vh] h-fit ">
+        <BlurCard className="w-full md:w-[70vw] md:overflow-y-auto    gap-4 flex flex-col p-2 pb-[5vh] md:h-[85vh] h-fit ">
           {userData && userData.projects && userData.projects.length > 0 ? (
             userData.projects.map((project: Project) => (
               <div

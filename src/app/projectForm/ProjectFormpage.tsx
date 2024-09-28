@@ -5,9 +5,11 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useAuth } from "@/context/AuthContext";
+import { useUser } from "@/context/UserContext";
 
 const ProjectFormpage = () => {
   const { user } = useAuth();
+  const { userData, loading } = useUser();
   const router = useRouter();
   const [formData, setFormData] = useState({
     projectName: "",
@@ -16,7 +18,7 @@ const ProjectFormpage = () => {
     githubLink: "",
     liveLink: "",
     projectImage: "",
-    createdBy: user?.email || "", // Reference to the user
+    createdBy: userData?._id, // Reference to the user
     teamMembers: [], // Array of user IDs
   });
   const [isClicked, setIsClicked] = useState(false);
@@ -46,9 +48,9 @@ const ProjectFormpage = () => {
 
     try {
       const response = await axios.post("/api/projects", formData);
-      if (response.status === 201) {
+      if (response.status === 200) {
         toast.success("Project created successfully!");
-        router.push("/projects");
+        router.push("/profile");
         console.log("pushed to projects");
       }
     } catch (error) {
