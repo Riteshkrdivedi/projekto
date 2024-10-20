@@ -6,10 +6,12 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useAuth } from "@/context/AuthContext";
 import { GrFormNextLink, GrFormNext } from "react-icons/gr";
+import { ImGift } from "react-icons/im";
 
 const RegisterProfiledata = () => {
   const { user } = useAuth();
   const router = useRouter();
+  const [dp, setdp] = useState<string | undefined>(undefined);
 
   // Initialize form data with Firebase email
   const [formData, setFormData] = useState({
@@ -18,7 +20,7 @@ const RegisterProfiledata = () => {
     lastName: "",
     workplace: "",
     email: user?.email || "", // Autofill with Firebase email if available
-    profilePicture: "",
+    profilePicture: user?.imageURL || "",
     linkedIn: "",
     twitter: "",
     github: "",
@@ -35,6 +37,25 @@ const RegisterProfiledata = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+  const handleDP = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setdp(e.target.value);
+
+    if (e.target.files && e.target.files[0]) {
+      console.log("image :", e.target.files[0]);
+      const bloburl = URL.createObjectURL(e.target.files[0]);
+      URL.revokeObjectURL(bloburl);
+      const imgurl = URL.createObjectURL(new Blob([e.target.files[0]]));
+      console.log("image url is :", imgurl);
+      setdp(imgurl);
+      // const img = new Image();
+      // if (dp) {
+      //   img.src = dp;
+      //   img.onload = () => {
+      //     document.body.appendChild(img);
+      //   };
+      // }
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -54,7 +75,7 @@ const RegisterProfiledata = () => {
 
   return (
     <form
-      className="h-screen flex text-black justify-center pt-[50vh] md:pt-12 mx-auto flex-col gap-4 w-[95vw]"
+      className=" md:h-screen h-fit flex text-black  justify-center pt-[15vh] md:pt-12 mx-auto flex-col gap-4 w-[95vw]"
       onSubmit={handleSubmit}
     >
       <div className="flex">
@@ -69,20 +90,30 @@ const RegisterProfiledata = () => {
           <GrFormNextLink className="inline ml-2 font-medium text-xl" />
         </button>
       </div>
-      <div className=" w-full h-11/12 border border-gray-500 rounded-lg bg-gradient-to-tr from-[#151123] via-transparent to-[#120635de] grid grid-cols-3 text-white">
+      <div className=" w-full md:h-11/12 h-fit  border border-gray-500 rounded-lg bg-gradient-to-tr from-[#151123] via-transparent to-[#120635de] grid md:grid-cols-3 grid-cols-1 text-white">
         <div className=" flex flex-col justify-around p-4">
+          <div className="h-28 w-28 border">
+            {dp ? (
+              <img src="dp" alt="dp" />
+            ) : (
+              <img src="guestdp.jpeg" alt="guest" />
+            )}
+          </div>
           <input
-            className=" border border-x-0 border-t-0 px-3 py-1 bg-transparent"
-            type="text"
+            id="dp-id"
+            className=" border  border-x-0 border-t-0 px-3 py-1 bg-transparent"
+            type="file"
             name="profilePicture"
             placeholder="Profile Picture URL"
             value={formData.profilePicture}
-            onChange={handleChange}
+            onChange={(e) => {
+              setdp(e.target.value);
+            }}
           />
           <div className=" flex flex-col ">
-            <h2>Bio</h2>
+            <h2 className="mt-7 md:mt-0">Bio</h2>
             <textarea
-              className=" border border-x-0 mt-3 mb-4 ml-3 border-t-0 px-3 py-1 bg-transparent"
+              className=" border border-x-0 md:mt-3 mb-4 ml-3 border-t-0 px-3 py-1 bg-transparent"
               name="bio"
               placeholder="I am an aspiring SDE "
               maxLength={150}
