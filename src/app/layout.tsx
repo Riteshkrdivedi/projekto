@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+
 import Navbar from "@/components/layout/Navbar";
 import { AuthProvider } from "../context/AuthContext";
 import { UserProvider } from "../context/UserContext";
@@ -9,6 +10,7 @@ import { UserProvider } from "../context/UserContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "@/components/layout/Footer";
+import NavbarWrapper from "@/components/layout/NavbarWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,7 +31,7 @@ export default function RootLayout({
       >
         <AuthProvider>
           <UserProvider>
-            <Navbar />
+            <NavbarWrapper />
 
             {children}
             <Footer />

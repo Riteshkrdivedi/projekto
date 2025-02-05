@@ -3,6 +3,7 @@ import Button from "../../components/Button";
 import Card from "../../components/Card";
 // import img from "next/img";
 import Jet3d from "../../components/3d/Jet3D";
+import Link from "next/link";
 
 const Projects = () => {
   return (
@@ -21,7 +22,7 @@ const Projects = () => {
         </p>
 
         <Button className=" border rounded-2xl  shadow-[#2A0E61]/100 hover:bg-[#512c8a] ease-in transition-colors  border-[#7721aa]">
-          Kickstart your project
+          <Link href="/projectForm">Kickstart your project</Link>
         </Button>
       </div>
 

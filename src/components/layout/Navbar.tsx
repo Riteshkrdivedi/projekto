@@ -91,7 +91,7 @@ const Navbar = () => {
                 Community
               </Link>
               <Link
-                href="#resoures"
+                href="/resources"
                 className="cursor-pointer  hover:text-[#b49ee0] "
               >
                 Resources
@@ -210,7 +210,7 @@ const Navbar = () => {
             <li className="w-full list-none text-center  hover:text-purple-500 hover:bg-slate-700 rounded-3xl py-3 text-2xl">
               <Link
                 onClick={() => setOpen(false)}
-                href="/resoures"
+                href="/resources"
                 className="cursor-pointer  hover:text-[#b49ee0] "
               >
                 Resources

@@ -8,6 +8,7 @@ import "swiper/css/autoplay";
 import resources from "../../data/resources";
 import styles from "./ResourceCarousel.module.css";
 import Button from "@/components/Button";
+import Link from "next/link";
 
 const Resources = () => {
   return (
@@ -26,7 +27,7 @@ const Resources = () => {
           </p>
 
           <Button className=" border rounded-2xl  shadow-[#2A0E61]/100 hover:bg-[#4795e0] ease-in transition-colors  border-[#1818be]">
-            Explore more Resources
+            <Link href="/resources">Explore more Resources</Link>
           </Button>
         </div>
       </div>

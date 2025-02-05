@@ -88,7 +88,7 @@ const ProjectFormpage = () => {
           type="submit"
           className="bg-blue-500 text-white p-2 w-28 rounded-full ml-auto"
         >
-          Save
+          Create
           <GrFormNextLink className="inline ml-2 font-medium text-xl" />
         </button>
       </div>
@@ -161,7 +161,7 @@ const ProjectFormpage = () => {
               className="border border-x-0 mt-3 mb-4 ml-3 border-t-0 px-3 py-1 bg-transparent"
               name="status"
               value={formData.status}
-              onChange={handleChange}
+              // onChange={handleChange}
               required
             >
               <option className="bg-blue-700" value="in progress">

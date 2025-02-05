@@ -25,9 +25,8 @@ const UserSchema = new mongoose.Schema({
   },
 
   profilePicture: {
-    type: String,
-    default:
-      "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    data: Buffer,
+    contentType: String,
   },
   linkedIn: {
     type: String,
