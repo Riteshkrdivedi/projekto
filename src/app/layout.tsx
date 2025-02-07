@@ -11,6 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "@/components/layout/Footer";
 import NavbarWrapper from "@/components/layout/NavbarWrapper";
+import FooterWrapper from "@/components/layout/FooterWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,7 +35,7 @@ export default function RootLayout({
             <NavbarWrapper />
 
             {children}
-            <Footer />
+            <FooterWrapper />
             <ToastContainer position="top-right" theme="dark" />
           </UserProvider>
         </AuthProvider>
