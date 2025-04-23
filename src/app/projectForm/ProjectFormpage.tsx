@@ -37,7 +37,9 @@ const ProjectFormpage = () => {
   }, [user]);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     setFormData({
       ...formData,
@@ -161,7 +163,7 @@ const ProjectFormpage = () => {
               className="border border-x-0 mt-3 mb-4 ml-3 border-t-0 px-3 py-1 bg-transparent"
               name="status"
               value={formData.status}
-              // onChange={handleChange}
+              onChange={handleChange}
               required
             >
               <option className="bg-blue-700" value="in progress">

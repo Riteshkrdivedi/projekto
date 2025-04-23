@@ -104,7 +104,13 @@ const Projectspage = () => {
             </div>
             <div className=" flex flex-col  justify-around ">
               <div
-                className={`border p-1 px-2 bg-transparent flex ml-auto text-xs md:text-base my-1 md:my-0 rounded-full w-fit p.staus === "completed" ? bg-green-600 : bg-red-600`}
+                className={`border p-1 px-2  flex ml-auto text-xs md:text-base my-1 md:my-0 rounded-full w-fit ${
+                  p.status == "in progress"
+                    ? "bg-transparent"
+                    : p.status === "completed"
+                    ? "bg-green-600"
+                    : "bg-red-600"
+                }`}
               >
                 {p.status}
               </div>
