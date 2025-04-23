@@ -29,8 +29,7 @@ const Resource_Search = () => {
     }
   };
 
-  const handleSelect = (resource: string) => {
-    // Type the parameter
+  const handleSelect = (resource: { title: string; description: string }) => {
     setQuery(resource.title); // Access name property of the resource object
     setShowSuggestions(false);
   };
@@ -44,7 +43,7 @@ const Resource_Search = () => {
   return (
     <div className=" ">
       <div className="flex justify-center">
-        <div className="border flex rounded-lg justify-between px-5 w-[80vw] h-fit py-2 relative">
+        <div className="border flex z-50 rounded-lg justify-between px-5 w-[80vw] h-fit py-2 relative">
           <div className="text-4xl mr-10">
             <Link href="/">
               <FaHome />
@@ -65,7 +64,7 @@ const Resource_Search = () => {
                   <li
                     key={index}
                     className="p-2 hover:bg-gray-700 cursor-pointer"
-                    onClick={() => handleSelect(resource.title)}
+                    onClick={() => handleSelect(resource)}
                   >
                     {resource.title}{" "}
                     <span className="text-sm text-gray-500">

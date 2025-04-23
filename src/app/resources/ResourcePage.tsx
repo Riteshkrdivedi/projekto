@@ -6,6 +6,7 @@ const ResourcePage = () => {
       <div className="Flex  text-center h-screen mt-10 w-[98vw] justify-center">
         <Resource_Search />
       </div>
+      <div className=""></div>
     </div>
   );
 };
